@@ -1,0 +1,14 @@
+Explore.Core.dll
+Explore.Core.pdb
+Explore.Data.dll
+Explore.Data.pdb
+Explore.Web.dll
+Explore.Web.pdb
+Explore.Web.Framework.dll
+Explore.Web.Framework.pdb
+Explore.Web.Services.dll
+Explore.Web.Services.pdb
+*.cache
+bin/
+obj/
+.vs/

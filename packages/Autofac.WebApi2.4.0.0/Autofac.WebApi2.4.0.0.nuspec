@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Autofac.WebApi2</id>
+    <version>4.0.0</version>
+    <title>Autofac ASP.NET Web API 2.2 Integration</title>
+    <authors>Autofac Contributors</authors>
+    <owners>Autofac Contributors</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>http://autofac.org/</projectUrl>
+    <iconUrl>https://cloud.githubusercontent.com/assets/1156571/13684110/16b8f152-e6bf-11e5-84ae-22c66c6d351a.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ASP.NET Web API 2.2 Integration for Autofac</description>
+    <summary>Provides an IControllerFactory implementation and other integration points for the ASP.NET Web API.</summary>
+    <releaseNotes>Fixed #6 and #14: The Autofac filter interfaces now use Task/async based method signatures rather than synchronous signatures. This avoids using Task.Run or other methods to convert async to synchronous where HttpContext.Current could sometimes get lost.
+
+Fixed #8: Marked RegisterModelBinders as obsolete since it doesn't actually register the model binders such that they hook into dependency injection. Use the AsModelBinderForTypes() extension on binder registrations instead.
+
+Fixed #10: Controller types that derive from base controllers can add action filters to non-virtual methods.
+
+Switched to .NET 4.5 security model (no more AllowPartiallyTrustedCallersAttribute).</releaseNotes>
+    <language>en-US</language>
+    <dependencies>
+      <dependency id="Autofac" version="[3.5.0, 5.0.0)" />
+      <dependency id="Microsoft.AspNet.WebApi.Core" version="[5.2.0, 6.0.0)" />
+    </dependencies>
+  </metadata>
+</package>

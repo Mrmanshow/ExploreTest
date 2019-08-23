@@ -1,0 +1,16 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+.message-error, .field-validation-error, .username-not-available-status, .poll-vote-error, .password-error {
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    color: #e4434b;
+    margin-top: 5px;
+}

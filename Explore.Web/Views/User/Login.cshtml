@@ -1,0 +1,107 @@
+﻿@model LoginModel
+
+
+@using Explore.Web.Models.Customer;
+@using Explore.Core;
+@using Explore.Core.Infrastructure;
+@using Explore.Web.Framework;
+@using Explore.Web.Framework.UI;
+
+@{
+    Layout = null;
+    
+    //title
+    Html.AddTitleParts("PageTitle.Login");
+
+    Html.AppendCssFileParts("~/Content/css/styles.css");    
+    Html.AppendCssFileParts("~/Content/iCheck/square/blue.css");
+    Html.AppendCssFileParts("~/Content/adminLTE/AdminLTE-2.3.0.min.css");      
+    Html.AppendCssFileParts("~/Content/bootstrap/css/bootstrap.min.css");
+    Html.AppendCssFileParts("~/Content/fontAwesome/css/font-awesome-4.6.3.min.css");
+
+    Html.AppendScriptParts("~/Content/iCheck/icheck.min.js");    
+    Html.AppendScriptParts("~/Scripts/bootstrap/bootstrap.min.js");
+    Html.AppendScriptParts("~/Scripts/jquery.validate.unobtrusive.min.js");
+    Html.AppendScriptParts("~/Scripts/jquery.validate.min.js");
+    Html.AppendScriptParts("~/Scripts/jquery-1.10.2.min.js");
+    
+
+    //register URL with return URL (if specified)
+    var registerUrl = Url.RouteUrl("Register");
+    if (!String.IsNullOrEmpty(this.Context.Request.QueryString["returnUrl"]))
+    {
+        var webHelper = EngineContext.Current.Resolve<IWebHelper>();
+        registerUrl = webHelper.ModifyQueryString(registerUrl, "returnurl=" + HttpUtility.UrlEncode(this.Context.Request.QueryString["returnUrl"]), null);
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    @Html.ExploreCssFiles(this.Url, ResourceLocation.Head, false)
+    @Html.ExploreScripts(this.Url, ResourceLocation.Head, false)
+</head>
+<body class="hold-transition login-page">
+
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="../../index2.html"><b>Admin</b>LTE</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">@T("Account.Login.ReturningCustomer")</p>
+
+            @using (Html.BeginForm())
+            {
+                var validationSummary = Html.ValidationSummary(true, T("Account.Login.Unsuccessful").Text);
+
+                if (!MvcHtmlString.IsNullOrEmpty(validationSummary))
+                {
+                    <div class="message-error text-red">@validationSummary</div>
+                }
+                <div class="form-group has-feedback">
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "用户名", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(m => m.Username)
+                    <span class="glyphicon  glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "密码" })
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox icheck">
+                            <label>
+                                @Html.CheckBoxFor(m => m.RememberMe) @Html.DisplayNameFor(m => m.RememberMe)
+
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            }
+        </div>
+        <!-- /.login-box-body -->
+
+        <script>
+            $(function () {
+                $('input').iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue',
+                    increaseArea: '20%' /* optional */
+                });
+            });
+        </script>
+    </div>
+
+</body>
+</html>

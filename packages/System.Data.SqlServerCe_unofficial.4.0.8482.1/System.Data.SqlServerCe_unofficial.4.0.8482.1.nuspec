@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>System.Data.SqlServerCe_unofficial</id>
+    <version>4.0.8482.1</version>
+    <title>System.Data.SqlServerCe (unofficial)</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <projectUrl>http://www.microsoft.com/en-us/download/details.aspx?id=17876</projectUrl>
+    <iconUrl>https://upload.wikimedia.org/wikipedia/commons/7/78/Sql-server-ce-4-logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Unofficial package of System.Data.SqlServerCe.dll if you need it as dependency</description>
+    <summary />
+    <copyright>© Microsoft® Corporation. All rights reserved.</copyright>
+    <tags>SQLCE SqlServerCompact</tags>
+  </metadata>
+</package>
