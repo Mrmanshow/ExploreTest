@@ -289,10 +289,10 @@ namespace Explore.Core
         }
 
         /// <summary>
-        /// Convert enum for front-end
+        /// 转换前端的枚举
         /// </summary>
-        /// <param name="str">Input string</param>
-        /// <returns>Converted string</returns>
+        /// <param name="str">要转换的值</param>
+        /// <returns>转换后的值</returns>
         public static string ConvertEnum(string str)
         {
             if (string.IsNullOrEmpty(str)) return string.Empty;
@@ -303,7 +303,7 @@ namespace Explore.Core
                 else
                     result += c.ToString();
 
-            //ensure no spaces (e.g. when the first letter is upper case)
+            //确保没有空格（例如，当第一个字母为大写时）
             result = result.TrimStart();
             return result;
         }

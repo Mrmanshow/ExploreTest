@@ -135,6 +135,9 @@
     <Compile Include="Domain\Common\FulltextSearchMode.cs" />
     <Compile Include="Domain\Common\GenericAttribute.cs" />
     <Compile Include="Domain\Configuration\Setting.cs" />
+    <Compile Include="Domain\Content\Banner.cs" />
+    <Compile Include="Domain\Content\BannerStatus.cs" />
+    <Compile Include="Domain\Content\BannerType.cs" />
     <Compile Include="Domain\Customers\Customer.cs" />
     <Compile Include="Domain\Customers\CustomerExtensions.cs" />
     <Compile Include="Domain\Customers\CustomerPassword.cs" />

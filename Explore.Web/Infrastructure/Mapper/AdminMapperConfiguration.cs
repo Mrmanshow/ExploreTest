@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using Explore.Core.Domain.Content;
 using Explore.Core.Domain.Customers;
 using Explore.Core.Domain.Users;
 using Explore.Core.Infrastructure.Mapper;
 using Explore.Services.Cms;
 using Explore.Web.Models.Cms;
+using Explore.Web.Models.Content;
 using Explore.Web.Models.User;
 using System;
 using System.Collections.Generic;
@@ -44,6 +46,17 @@ namespace Explore.Web.Infrastructure.Mapper
                     .ForMember(dest => dest.UserName, mo => mo.MapFrom(src => src.UserName))
                     .ForMember(dest => dest.NickName, mo => mo.MapFrom(src => src.NickName))
                     .ForMember(dest => dest.LoginType, mo => mo.Ignore())
+                    .ForMember(dest => dest.CreateTime, mo => mo.MapFrom(src => src.CreateTime.ToString("yyyy-MM-dd HH:mmm:ss")));
+
+                cfg.CreateMap<Banner, BannerModel>()
+                    .ForMember(dest => dest.Id, mo => mo.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.BannerImg, mo => mo.MapFrom(src => src.BannerImg))
+                    .ForMember(dest => dest.Theme, mo => mo.Ignore())
+                    .ForMember(dest => dest.BannerLink, mo => mo.MapFrom(src => src.BannerLink))
+                    .ForMember(dest => dest.BannerOrder, mo => mo.MapFrom(src => src.BannerOrder))
+                    .ForMember(dest => dest.Status, mo => mo.Ignore())
+                    .ForMember(dest => dest.ShowBeginDate, mo => mo.MapFrom(src => src.ShowBeginDate.ToString("yyyy-MM-dd")))
+                    .ForMember(dest => dest.ShowEndDate, mo => mo.MapFrom(src => src.ShowEndDate.ToString("yyyy-MM-dd")))
                     .ForMember(dest => dest.CreateTime, mo => mo.MapFrom(src => src.CreateTime.ToString("yyyy-MM-dd HH:mmm:ss")));
             };
             return action;

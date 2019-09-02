@@ -179,13 +179,13 @@ namespace Explore.Services.Localization
 
 
         /// <summary>
-        /// Get localized value of enum
+        /// 获取枚举的本地化值
         /// </summary>
-        /// <typeparam name="T">Enum</typeparam>
-        /// <param name="enumValue">Enum value</param>
-        /// <param name="localizationService">Localization service</param>
-        /// <param name="workContext">Work context</param>
-        /// <returns>Localized value</returns>
+        /// <typeparam name="T">枚举</typeparam>
+        /// <param name="enumValue">枚举值</param>
+        /// <param name="localizationService">本地化服务</param>
+        /// <param name="workContext">工作上下文</param>
+        /// <returns>本地化后的值</returns>
         public static string GetLocalizedEnum<T>(this T enumValue, ILocalizationService localizationService, IWorkContext workContext)
             where T : struct
         {
@@ -195,13 +195,14 @@ namespace Explore.Services.Localization
             return GetLocalizedEnum(enumValue, localizationService, 1);
         }
         /// <summary>
-        /// Get localized value of enum
+        /// 获取枚举的本地化值
         /// </summary>
-        /// <typeparam name="T">Enum</typeparam>
-        /// <param name="enumValue">Enum value</param>
-        /// <param name="localizationService">Localization service</param>
-        /// <param name="languageId">Language identifier</param>
-        /// <returns>Localized value</returns>
+        /// <typeparam name="T">枚举</typeparam>
+        /// <param name="enumValue">枚举值</param>
+        /// <param name="localizationService">本地化服务</param>
+        /// <param name="workContext">工作上下文</param>
+        /// <param name="languageId">语言标志</param>
+        /// <returns>本地化后的值</returns>
         public static string GetLocalizedEnum<T>(this T enumValue, ILocalizationService localizationService, int languageId)
             where T : struct
         {
@@ -210,14 +211,14 @@ namespace Explore.Services.Localization
 
             if (!typeof(T).IsEnum) throw new ArgumentException("T must be an enumerated type");
 
-            //localized value
+            //本地化的值
             string resourceName = string.Format("Enums.{0}.{1}",
                 typeof(T).ToString(),
                 //Convert.ToInt32(enumValue)
                 enumValue.ToString());
             string result = localizationService.GetResource(resourceName, languageId, false, "", true);
 
-            //set default value if required
+            //必须则设置默认值
             if (String.IsNullOrEmpty(result))
                 result = CommonHelper.ConvertEnum(enumValue.ToString());
 
