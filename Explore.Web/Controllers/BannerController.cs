@@ -13,6 +13,9 @@ using Explore.Web.Framework.Kendoui;
 using Explore.Services.Helpers;
 using Explore.Web.Factories;
 using Explore.Services.Content;
+using Explore.Services.Media;
+using Explore.Web.Framework.Controllers;
+using Explore.Web.Extensions;
 
 namespace Explore.Web.Controllers
 {
@@ -25,6 +28,7 @@ namespace Explore.Web.Controllers
         private readonly IDateTimeHelper _dateTimeHelper;
         private readonly IBannerService _bannerService;
         private readonly IBannerModelFactory _bannerModelFactory;
+        private readonly IPictureService _pictureService;
 
         #endregion
 
@@ -34,13 +38,15 @@ namespace Explore.Web.Controllers
             ILocalizationService localizationService,
             IDateTimeHelper dateTimeHelper,
             IBannerService bannerService,
-            IBannerModelFactory bannerModelFactory)
+            IBannerModelFactory bannerModelFactory,
+            IPictureService pictureService)
         {
             this._permissionService = permissionService;
             this._localizationService = localizationService;
             this._dateTimeHelper = dateTimeHelper;
             this._bannerService = bannerService;
             this._bannerModelFactory = bannerModelFactory;
+            this._pictureService = pictureService;
         }
 
         #endregion
@@ -88,6 +94,130 @@ namespace Explore.Web.Controllers
             };
 
             return Json(gridModel);
+        }
+
+        public virtual ActionResult Create()
+        {
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBanner))
+                return AccessDeniedView();
+
+            var model = new BannerModel();
+
+            model.AvailableBannerStatuses = BannerStatus.Display.ToSelectList(true).ToList();
+            model.AvailableBannerTypes = BannerType.Index.ToSelectList(true).ToList();
+
+            return View(model);
+        }
+
+        [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
+        public virtual ActionResult Create(BannerModel model, bool continueEditing)
+        {
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBanner))
+                return AccessDeniedView();
+
+            if (ModelState.IsValid)
+            {
+                var banner = model.ToEntity();
+
+                banner.CreateTime = DateTime.UtcNow;
+                banner.BannerImg = "";
+                banner.Pictures.Add(new BannerPicture { PictureId = model.PictureModel.PictureId });
+
+                _bannerService.InsertBanner(banner);
+
+                if (continueEditing)
+                {
+                    //selected tab
+                    SaveSelectedTabName();
+
+                    return RedirectToAction("Edit", new { id = banner.Id });
+                }
+            }
+
+            model.AvailableBannerStatuses = BannerStatus.Display.ToSelectList(true).ToList();
+            model.AvailableBannerTypes = BannerType.Index.ToSelectList(true).ToList();
+
+            return View(model);
+        }
+
+        public virtual ActionResult Edit(int id)
+        {
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBanner))
+                return AccessDeniedView();
+
+            var banner = _bannerService.GetBannerById(id);
+            if (banner == null)
+                return RedirectToAction("List");
+
+            var model = _bannerModelFactory.PrepareBannerModel(banner);
+
+            return View(model);
+        }
+
+        [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
+        public virtual ActionResult Edit(BannerModel model, bool continueEditing)
+        {
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBanner))
+                return AccessDeniedView();
+
+            var banner = _bannerService.GetBannerById(model.Id);
+
+            if (ModelState.IsValid)
+            {
+                banner = model.ToEntity(banner);
+                banner.Pictures.First().PictureId = model.PictureModel.PictureId;
+
+                _bannerService.UpdateBanner(banner);
+
+
+                if (continueEditing)
+                {
+                    //selected tab
+                    SaveSelectedTabName();
+
+                    return RedirectToAction("Edit", new { id = banner.Id });
+                }
+                return RedirectToAction("List");
+            }
+
+            //model = _bannerModelFactory.PrepareBannerModel(banner);
+
+            BannerStatus status = (BannerStatus)Enum.Parse(typeof(BannerStatus), banner.Status.ToString());
+            model.AvailableBannerStatuses = status.ToSelectList(true).ToList();
+
+            BannerType type = (BannerType)Enum.Parse(typeof(BannerType), banner.Type.ToString());
+            model.AvailableBannerTypes = type.ToSelectList(true).ToList();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public virtual ActionResult Delete(int id)
+        {
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBanner))
+                return AccessDeniedView();
+
+            var banner = _bannerService.GetBannerById(id);
+            if (banner == null)
+                return RedirectToAction("List");
+
+            _bannerService.DeleteBanner(banner);
+
+            return RedirectToAction("List");
+        }
+
+        public virtual ActionResult DeleteSelected(ICollection<int> selectedIds)
+        {
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageBanner))
+                return AccessDeniedView();
+
+            if (selectedIds != null)
+            {
+                var banners = _bannerService.GetBannersByIds(selectedIds.ToArray());
+                _bannerService.DeleteBanners(banners);
+            }
+
+            return Json(new { Result = true });
         }
 
         #endregion

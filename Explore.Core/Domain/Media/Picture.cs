@@ -37,7 +37,7 @@ namespace Explore.Core.Domain.Media
         public string TitleAttribute { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the picture is new
+        /// 获取或设置一个值，该值指示图片是否是新的
         /// </summary>
         public bool IsNew { get; set; }
     }

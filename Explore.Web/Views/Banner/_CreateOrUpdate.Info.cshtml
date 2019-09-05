@@ -1,0 +1,114 @@
+﻿@using Explore.Web.Framework;
+
+@model Explore.Web.Models.Content.BannerModel
+
+
+<script type="text/javascript">
+
+</script>
+
+<div class="raw clearfix">
+    <div class="col-md-7">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @T("Admin.Content.Banner.BannerInfo")
+                </div>
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.PictureModel.PictureId)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.PictureModel.PictureId, required: true)
+                            @Html.ValidationMessageFor(model => model.PictureModel.PictureId)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.Theme)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.Theme)
+                            @Html.ValidationMessageFor(model => model.Theme)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.Type)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreDropDownListFor(model => model.Type, Model.AvailableBannerTypes)
+                            @Html.ValidationMessageFor(model => model.Type)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.BannerLink)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.BannerLink)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.LinkType)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.LinkType)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.BannerOrder)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.BannerOrder)
+                            @Html.ValidationMessageFor(model => model.BannerOrder)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.ShowBeginDate)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.ShowBeginDate, required: true)
+                            @Html.ValidationMessageFor(model => model.ShowBeginDate)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.ShowEndDate)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.ShowEndDate, required: true)
+                            @Html.ValidationMessageFor(model => model.ShowEndDate)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.Status)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreDropDownListFor(model => model.Status, Model.AvailableBannerStatuses)
+                            @Html.ValidationMessageFor(model => model.Status)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+ 
+        </div>
+    </div>
+</div>

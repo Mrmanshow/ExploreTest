@@ -7,6 +7,8 @@ using System.Web;
 using Explore.Web.Extensions;
 using Explore.Services.Localization;
 using Explore.Core;
+using Explore.Services;
+using Explore.Services.Media;
 
 namespace Explore.Web.Factories
 {
@@ -16,16 +18,19 @@ namespace Explore.Web.Factories
 
         private readonly ILocalizationService _localizationService;
         private readonly IWorkContext _workContext;
+        private readonly IPictureService _pictureService;
 
         #endregion
 
         #region Ctor
 
         public BannerModeIFactory(ILocalizationService localizationService,
-            IWorkContext workContext)
+            IWorkContext workContext,
+            IPictureService pictureService)
         {
             this._workContext = workContext;
             this._localizationService = localizationService;
+            this._pictureService = pictureService;
         }
 
         #endregion
@@ -40,10 +45,25 @@ namespace Explore.Web.Factories
                 model.Status = x.BannerStatus.GetLocalizedEnum(_localizationService, _workContext);
                 model.Type = x.BannerType.GetLocalizedEnum(_localizationService, _workContext);
 
+                model.PictureModel.PictureUrl = _pictureService.GetPictureUrl(model.PictureModel.PictureId);
                 return model;
             });
 
             return list.ToList();
+        }
+
+        public virtual BannerModel PrepareBannerModel(Banner banner)
+        {
+            var model = banner.ToModel();
+
+            //string status = Enum.GetName(typeof(BannerStatus), banner.Status);
+            BannerStatus status = (BannerStatus)Enum.Parse(typeof(BannerStatus), banner.Status.ToString());
+            model.AvailableBannerStatuses = status.ToSelectList(true).ToList();
+
+            BannerType type = (BannerType)Enum.Parse(typeof(BannerType), banner.Type.ToString());
+            model.AvailableBannerTypes = type.ToSelectList(true).ToList();
+
+            return model;
         }
 
         #endregion

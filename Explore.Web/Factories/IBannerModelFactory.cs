@@ -10,5 +10,7 @@ namespace Explore.Web.Factories
     public partial interface IBannerModelFactory
     {
         IList<BannerModel> PrepareBannerListModel(IList<Banner> customer);
+
+        BannerModel PrepareBannerModel(Banner banner);
     }
 }

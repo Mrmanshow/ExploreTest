@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminAuthorizeAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ParameterBasedOnFormNameAttribute.cs" />
     <Compile Include="CustomerLastActivityAttribute.cs" />
     <Compile Include="DependencyRegistrar.cs" />
     <Compile Include="ExploreValidatorFactory.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Menu\SiteMapNode.cs" />
     <Compile Include="Menu\XmlSiteMap.cs" />
     <Compile Include="MVC\BaseExploreModel.cs" />
+    <Compile Include="MVC\DeleteConfirmationModel.cs" />
     <Compile Include="MVC\DependencyRegistrarExtensions.cs" />
     <Compile Include="MVC\ExploreMetadataProvider.cs" />
     <Compile Include="MVC\ExploreModelBinder.cs" />

@@ -61,7 +61,8 @@
     <Compile Include="Initializers\SqlCeInitializer.cs" />
     <Compile Include="Mapping\Common\GenericAttributeMap.cs" />
     <Compile Include="Mapping\Configuration\SettingMap.cs" />
-    <Compile Include="Mapping\Content\BannerMapping.cs" />
+    <Compile Include="Mapping\Content\BannerMap.cs" />
+    <Compile Include="Mapping\Content\BannerPictureMap.cs" />
     <Compile Include="Mapping\Customers\CustomerMap.cs" />
     <Compile Include="Mapping\Customers\CustomerPasswordMap.cs" />
     <Compile Include="Mapping\Customers\CustomerRoleMap.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Mapping\Localization\LocaleStringResourceMap.cs" />
     <Compile Include="Mapping\Logging\ActivityLogTypeMap.cs" />
     <Compile Include="Mapping\Logging\LogMap.cs" />
+    <Compile Include="Mapping\Media\PictureMap.cs.cs" />
     <Compile Include="Mapping\Security\PermissionRecordMap.cs" />
     <Compile Include="Mapping\Users\UserAssetsMap.cs" />
     <Compile Include="Mapping\Users\UserMap.cs" />

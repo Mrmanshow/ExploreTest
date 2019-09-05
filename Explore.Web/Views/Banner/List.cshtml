@@ -20,6 +20,16 @@
         <h1 class="pull-left">
             @T("Admin.Banner")
         </h1>
+        <div class="pull-right">
+            <a href="@Url.Action("Create")" class="btn bg-blue">
+                <i class="fa fa-plus-square"></i>
+                @T("Admin.Common.AddNew")
+            </a>
+            <button type="button" id="delete-selected" class="btn bg-red">
+                <i class="fa fa-trash-o"></i>
+                @T("Admin.Common.Delete.Selected")
+            </button>
+        </div>
     </div>
 
     <div class="content">
@@ -79,11 +89,11 @@
 
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div id="orders-grid"></div>
+                        <div id="banners-grid"></div>
 
                         <script>
                             $(document).ready(function() {
-                                $("#orders-grid").kendoGrid({
+                                $("#banners-grid").kendoGrid({
                                     dataSource: {
                                         type: "json",
                                         transport: {
@@ -140,7 +150,7 @@
                                         }, {
                                             field: "BannerImg",
                                             title: "@T("Admin.Banner.Fields.BannerImg")",
-                                            template: '<img style="width: 100px" src="#=BannerImg#" />',
+                                            template: '<img style="width: 100px" src="#=PictureModel.PictureUrl#" />',
                                             width: 100
                                         },
                                         {
@@ -164,17 +174,23 @@
                                         {
                                             field: "ShowBeginDate",
                                             title: "@T("Admin.Banner.Fields.ShowBeginDate")",
-                                            width: 100
+                                            width: 100,
+                                            type: "date",
+                                            format: "{0:yyyy-MM-dd}"
                                         },
                                         {
                                             field: "ShowEndDate",
                                             title: "@T("Admin.Banner.Fields.ShowEndDate")",
-                                            width: 100
+                                            width: 100,
+                                            type: "date",
+                                            format: "{0:yyyy-MM-dd}"
                                         },
                                         {
                                             field: "CreateTime",
                                             title: "@T("Admin.Banner.Fields.CreateTime")",
-                                            width: 150
+                                            width: 150,
+                                            type: "date",
+                                            format: "{0:yyyy-MM-dd HH:mm:ss}"
                                         },
                                         {
                                             field: "Status",
@@ -202,7 +218,7 @@
                                 //search button
                                 $('#search-orders').click(function () {
                                     //search
-                                    var grid = $('#orders-grid').data('kendoGrid');
+                                    var grid = $('#banners-grid').data('kendoGrid');
                                     grid.dataSource.page(1); //new search. Set page size to 1
                                     //grid.dataSource.read(); we already loaded the grid above using "page" function
                                     //clear selected checkboxes
@@ -223,7 +239,7 @@
                                 });
 
                                 //wire up checkboxes.
-                                $('#orders-grid').on('change', 'input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]', function (e) {
+                                $('#banners-grid').on('change', 'input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]', function (e) {
                                     var $check = $(this);
                                     if ($check.is(":checked") == true) {
                                         var checked = jQuery.inArray($check.val(), selectedIds);
@@ -257,7 +273,7 @@
                             }
 
                             function onDataBound(e) {
-                                $('#orders-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').each(function () {
+                                $('#banners-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').each(function () {
                                     var currentId = $(this).val();
                                     var checked = jQuery.inArray(currentId, selectedIds);
                                     //set checked based on if current checkbox's value is in selectedIds.
@@ -278,10 +294,37 @@
                             }
 
                             function updateMasterCheckbox() {
-                                var numChkBoxes = $('#orders-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').length;
-                                var numChkBoxesChecked = $('#orders-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]:checked').length;
+                                var numChkBoxes = $('#banners-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').length;
+                                var numChkBoxesChecked = $('#banners-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]:checked').length;
                                 $('#mastercheckbox').attr('checked', numChkBoxes == numChkBoxesChecked && numChkBoxes > 0);
                             }
+
+                            //delete selected
+                            $('#delete-selected').click(function(e) {
+                                e.preventDefault();
+
+                                var postData = {
+                                    selectedIds: selectedIds
+                                };
+                                addAntiForgeryToken(postData);
+
+                                $.ajax({
+                                    cache: false,
+                                    type: "POST",
+                                    url: "@(Url.Action("DeleteSelected", "Banner"))",
+                                    data: postData,
+                                complete: function(data) {
+                                    //reload grid
+                                    var grid = $('#banners-grid').data('kendoGrid');
+                                    grid.dataSource.read();
+                                },
+                                error: function(xhr, ajaxOptions, thrownError) {
+                                    alert(thrownError);
+                                },
+                                traditional: true
+                            });
+                            return false;
+                            });
                         </script>
                     </div>
                 </div>

@@ -32,6 +32,7 @@ using Explore.Services.Cms;
 using Explore.Core.Plugins;
 using Explore.Services.Users;
 using Explore.Services.Content;
+using Explore.Services.Media;
 
 namespace Explore.Web.Framework
 {
@@ -118,6 +119,8 @@ namespace Explore.Web.Framework
             builder.RegisterType<EncryptionService>().As<IEncryptionService>().InstancePerLifetimeScope();
             builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerLifetimeScope();
             builder.RegisterType<BannerService>().As<IBannerService>().InstancePerLifetimeScope();
+
+            builder.RegisterType<PictureService>().As<IPictureService>().InstancePerLifetimeScope();
 
 
 

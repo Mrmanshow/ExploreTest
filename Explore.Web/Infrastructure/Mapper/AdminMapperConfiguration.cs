@@ -50,14 +50,26 @@ namespace Explore.Web.Infrastructure.Mapper
 
                 cfg.CreateMap<Banner, BannerModel>()
                     .ForMember(dest => dest.Id, mo => mo.MapFrom(src => src.Id))
-                    .ForMember(dest => dest.BannerImg, mo => mo.MapFrom(src => src.BannerImg))
-                    .ForMember(dest => dest.Theme, mo => mo.Ignore())
+                    .ForMember(dest => dest.Theme, mo => mo.MapFrom(src => src.Theme))
                     .ForMember(dest => dest.BannerLink, mo => mo.MapFrom(src => src.BannerLink))
                     .ForMember(dest => dest.BannerOrder, mo => mo.MapFrom(src => src.BannerOrder))
-                    .ForMember(dest => dest.Status, mo => mo.Ignore())
-                    .ForMember(dest => dest.ShowBeginDate, mo => mo.MapFrom(src => src.ShowBeginDate.ToString("yyyy-MM-dd")))
-                    .ForMember(dest => dest.ShowEndDate, mo => mo.MapFrom(src => src.ShowEndDate.ToString("yyyy-MM-dd")))
-                    .ForMember(dest => dest.CreateTime, mo => mo.MapFrom(src => src.CreateTime.ToString("yyyy-MM-dd HH:mmm:ss")));
+                    .ForMember(dest => dest.LinkType, mo => mo.MapFrom(src => Convert.ToBoolean(src.LinkType)))
+                    .ForMember(dest => dest.ShowBeginDate, mo => mo.MapFrom(src => src.ShowBeginDate))
+                    .ForMember(dest => dest.ShowEndDate, mo => mo.MapFrom(src => src.ShowEndDate))
+                    .ForMember(dest => dest.CreateTime, mo => mo.MapFrom(src => src.CreateTime.ToString("yyyy-MM-dd HH:mmm:ss")))
+                    .AfterMap((src, dest) => dest.PictureModel.PictureId = src.Pictures.Count > 0 ? src.Pictures.First().PictureId : 0);
+                cfg.CreateMap<BannerModel, Banner>()
+                    .ForMember(dest => dest.Id, mo => mo.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.Theme, mo => mo.MapFrom(src => src.Theme))
+                    .ForMember(dest => dest.BannerLink, mo => mo.MapFrom(src => src.BannerLink))
+                    .ForMember(dest => dest.BannerOrder, mo => mo.MapFrom(src => src.BannerOrder))
+                    .ForMember(dest => dest.LinkType, mo => mo.MapFrom(src => Convert.ToBoolean(src.LinkType)))
+                    .ForMember(dest => dest.Status, mo => mo.MapFrom(src => src.Status))
+                    .ForMember(dest => dest.ShowBeginDate, mo => mo.MapFrom(src => src.ShowBeginDate))
+                    .ForMember(dest => dest.ShowEndDate, mo => mo.MapFrom(src => src.ShowEndDate))
+                    .ForMember(dest => dest.CreateTime, mo => mo.Ignore())
+                    .ForMember(dest => dest.Status, mo => mo.MapFrom(src => Int32.Parse(src.Status)))
+                    .ForMember(dest => dest.Type, mo => mo.MapFrom(src => Int32.Parse(src.Type)));
             };
             return action;
         }

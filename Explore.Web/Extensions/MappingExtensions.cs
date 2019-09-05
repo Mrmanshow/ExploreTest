@@ -40,11 +40,24 @@ namespace Explore.Web.Extensions
             return entity.MapTo<User, UserModel>();
         }
 
+        #endregion
+
+        #region Content
+
         public static BannerModel ToModel(this Banner entity)
         {
             return entity.MapTo<Banner, BannerModel>();
         }
 
+        public static Banner ToEntity(this BannerModel model)
+        {
+            return model.MapTo<BannerModel, Banner>();
+        }
+
+        public static Banner ToEntity(this BannerModel model, Banner destination)
+        {
+            return model.MapTo(destination);
+        }
 
         #endregion
     }

@@ -80,13 +80,24 @@ namespace Explore.Web.Framework.UI
         }
 
         /// <summary>
-        /// Add script element
+        /// 添加Script元素
         /// </summary>
         /// <param name="html">HTML helper</param>
-        /// <param name="location">A location of the script element</param>
-        /// <param name="part">Script part</param>
-        /// <param name="excludeFromBundle">A value indicating whether to exclude this script from bundling</param>
-        /// <param name="isAsync">A value indicating whether to add an attribute "async" or not for js files</param>
+        /// <param name="part">Script地址</param>
+        /// <param name="excludeFromBundle">指示是否从绑定中排除此脚本的值</param>
+        /// <param name="isAsync">指示是否为JS文件添加属性“async”的值。</param>
+        public static void AddScriptParts(this HtmlHelper html, string part, bool excludeFromBundle = false, bool isAsync = false)
+        {
+            AddScriptParts(html, ResourceLocation.Head, part, excludeFromBundle, isAsync);
+        }
+        /// <summary>
+        /// 添加Script元素
+        /// </summary>
+        /// <param name="html">HTML helper</param>
+        /// <param name="location">Script元素的位置</param>
+        /// <param name="part">Script地址</param>
+        /// <param name="excludeFromBundle">指示是否从绑定中排除此脚本的值</param>
+        /// <param name="isAsync">指示是否为JS文件添加属性“async”的值。</param>
         public static void AddScriptParts(this HtmlHelper html, ResourceLocation location, string part, bool excludeFromBundle = false, bool isAsync = false)
         {
             var pageHeadBuilder = EngineContext.Current.Resolve<IPageHeadBuilder>();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Explore.Core.Domain.Media;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,17 @@ namespace Explore.Core.Domain.Content
         public DateTime CreateTime { get; set; }
 
         public int Status { get; set; }
+
+        public int LinkType { get; set; }
+
+
+        private ICollection<BannerPicture> _picture;
+
+        public virtual ICollection<BannerPicture> Pictures
+        {
+            get { return _picture ?? (_picture = new List<BannerPicture>()); }
+            protected set { _picture = value; }
+        }
 
         #endregion
 
