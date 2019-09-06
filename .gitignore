@@ -1,3 +1,4 @@
+    
 Explore.Core.dll
 Explore.Core.pdb
 Explore.Data.dll
@@ -12,3 +13,5 @@ Explore.Web.Services.pdb
 bin/
 obj/
 .vs/
+Explore.Web/Content/images
+Explore.Web/App_Data/Settings.txt
