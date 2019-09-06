@@ -17,6 +17,10 @@ namespace Explore.Services.Security
         public static readonly PermissionRecord AccessAdminPanel = new PermissionRecord { Name = "Access admin area", SystemName = "Admin", Category = "Standard" };
         public static readonly PermissionRecord ManageAdministrator = new PermissionRecord { Name = "Admin area. Manage Administrator", SystemName = "ManageAdministrator", Category = "Administrator" };
         public static readonly PermissionRecord ManageUser = new PermissionRecord { Name = "Admin area. Manage User", SystemName = "ManageUser", Category = "User" };
+        public static readonly PermissionRecord ManageBanner = new PermissionRecord { Name = "Admin area. Manage Banner", SystemName = "ManageBanner", Category = "Banner" };
+        public static readonly PermissionRecord ManageGameDailyStatistics = new PermissionRecord { Name = "Admin area. Manage Game Daily Statistics", SystemName = "ManageGameDailyStatistics", Category = "GameDailyStatistics" };
+
+
 
 
         public virtual IEnumerable<PermissionRecord> GetPermissions()
@@ -25,7 +29,9 @@ namespace Explore.Services.Security
             {
                 AccessAdminPanel,
                 ManageAdministrator,
-                ManageUser
+                ManageUser,
+                ManageBanner,
+                ManageGameDailyStatistics
             };
         }
 
@@ -40,7 +46,9 @@ namespace Explore.Services.Security
                     {
                         AccessAdminPanel,
                         ManageAdministrator,
-                        ManageUser
+                        ManageUser,
+                        ManageBanner,
+                        ManageGameDailyStatistics
                     }
                 },
                 new DefaultPermissionRecord 

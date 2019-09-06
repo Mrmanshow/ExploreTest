@@ -1,0 +1,34 @@
+﻿@using Explore.Web.Framework;
+
+@model Explore.Web.Models.Content.BannerModel
+
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+
+<div class="content">
+    <div class="form-horizontal">
+        <div id="product-edit" class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                @Html.RenderBootstrapTabHeader("tab-info", @T("Admin.Content.Banner.Info"), true)
+                @Html.RenderBootstrapTabHeader("tab-pictures", @T("Admin.Catalog.Products.Pictures"))
+            </ul>
+            <div class="tab-content">
+                @Html.RenderBootstrapTabContent("tab-info", @TabInfo(), true)
+                @Html.RenderBootstrapTabContent("tab-pictures", @TabPictures())
+            </div>
+        </div>
+    </div>
+</div>
+
+@*save selected tab name*@
+<input type="hidden" id="selected-tab-name" name="selected-tab-name" value="@(Html.GetSelectedTabName())">
+
+@helper TabInfo()
+{
+    @Html.Partial("_CreateOrUpdate.Info", Model)
+}
+
+@helper TabPictures()
+{
+    @Html.Partial("_CreateOrUpdate.Pictures", Model)
+}

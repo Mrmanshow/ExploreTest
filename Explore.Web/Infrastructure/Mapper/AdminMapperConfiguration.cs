@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
+using Explore.Core.Domain.Content;
 using Explore.Core.Domain.Customers;
+using Explore.Core.Domain.Game;
 using Explore.Core.Domain.Users;
 using Explore.Core.Infrastructure.Mapper;
 using Explore.Services.Cms;
 using Explore.Web.Models.Cms;
+using Explore.Web.Models.Content;
+using Explore.Web.Models.Game;
 using Explore.Web.Models.User;
 using System;
 using System.Collections.Generic;
@@ -45,6 +49,37 @@ namespace Explore.Web.Infrastructure.Mapper
                     .ForMember(dest => dest.NickName, mo => mo.MapFrom(src => src.NickName))
                     .ForMember(dest => dest.LoginType, mo => mo.Ignore())
                     .ForMember(dest => dest.CreateTime, mo => mo.MapFrom(src => src.CreateTime.ToString("yyyy-MM-dd HH:mmm:ss")));
+
+                cfg.CreateMap<Banner, BannerModel>()
+                    .ForMember(dest => dest.Id, mo => mo.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.Theme, mo => mo.MapFrom(src => src.Theme))
+                    .ForMember(dest => dest.BannerLink, mo => mo.MapFrom(src => src.BannerLink))
+                    .ForMember(dest => dest.BannerOrder, mo => mo.MapFrom(src => src.BannerOrder))
+                    .ForMember(dest => dest.LinkType, mo => mo.MapFrom(src => Convert.ToBoolean(src.LinkType)))
+                    .ForMember(dest => dest.ShowBeginDate, mo => mo.MapFrom(src => src.ShowBeginDate))
+                    .ForMember(dest => dest.ShowEndDate, mo => mo.MapFrom(src => src.ShowEndDate))
+                    .ForMember(dest => dest.CreateTime, mo => mo.MapFrom(src => src.CreateTime.ToString("yyyy-MM-dd HH:mmm:ss")))
+                    .AfterMap((src, dest) => dest.PictureModel.PictureId = src.Pictures.Count > 0 ? src.Pictures.First().PictureId : 0);
+                cfg.CreateMap<BannerModel, Banner>()
+                    .ForMember(dest => dest.Id, mo => mo.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.Theme, mo => mo.MapFrom(src => src.Theme))
+                    .ForMember(dest => dest.BannerLink, mo => mo.MapFrom(src => src.BannerLink))
+                    .ForMember(dest => dest.BannerOrder, mo => mo.MapFrom(src => src.BannerOrder))
+                    .ForMember(dest => dest.LinkType, mo => mo.MapFrom(src => Convert.ToBoolean(src.LinkType)))
+                    .ForMember(dest => dest.Status, mo => mo.MapFrom(src => src.Status))
+                    .ForMember(dest => dest.ShowBeginDate, mo => mo.MapFrom(src => src.ShowBeginDate))
+                    .ForMember(dest => dest.ShowEndDate, mo => mo.MapFrom(src => src.ShowEndDate))
+                    .ForMember(dest => dest.CreateTime, mo => mo.Ignore())
+                    .ForMember(dest => dest.Status, mo => mo.MapFrom(src => Int32.Parse(src.Status)))
+                    .ForMember(dest => dest.Type, mo => mo.MapFrom(src => Int32.Parse(src.Type)));
+
+                cfg.CreateMap<GameTurnover, GameDailyStatisticsModel>()
+                    .ForMember(dest => dest.GameCount, mo => mo.MapFrom(src => src.GameCount))
+                    .ForMember(dest => dest.GameUser, mo => mo.MapFrom(src => src.GameUser))
+                    .ForMember(dest => dest.GameWin, mo => mo.MapFrom(src => src.GameWin))
+                    .ForMember(dest => dest.GameFail, mo => mo.MapFrom(src => src.GameFail))
+                    .ForMember(dest => dest.CreateTime, mo => mo.MapFrom(src => src.CreateTime));
+
             };
             return action;
         }

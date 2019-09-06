@@ -1,0 +1,334 @@
+﻿@using Explore.Core.Infrastructure;
+@using Explore.Web.Framework;
+@using Explore.Web.Framework.UI;
+@model Explore.Web.Models.Content.BannerListModel
+
+@{
+    var defaultGridPageSize = EngineContext.Current.Resolve<Explore.Core.Domain.Common.AdminAreaSettings>().DefaultGridPageSize;
+    var gridPageSizes = EngineContext.Current.Resolve<Explore.Core.Domain.Common.AdminAreaSettings>().GridPageSizes;
+
+    //page title
+    ViewBag.Title = T("Admin.Banner").Text;
+    //active menu item (system name)
+    Html.SetActiveMenuItemSystemName("Content Banner List");
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="content-header clearfix">
+        <h1 class="pull-left">
+            @T("Admin.Banner")
+        </h1>
+        <div class="pull-right">
+            <a href="@Url.Action("Create")" class="btn bg-blue">
+                <i class="fa fa-plus-square"></i>
+                @T("Admin.Common.AddNew")
+            </a>
+            <button type="button" id="delete-selected" class="btn bg-red">
+                <i class="fa fa-trash-o"></i>
+                @T("Admin.Common.Delete.Selected")
+            </button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="form-horizontal">
+            <div class="panel-group">
+                <div class="panel panel-default panel-search">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.ExploreLabelFor(model => model.SearchStartDate)
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.ExploreEditorFor(model => model.SearchStartDate)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.ExploreLabelFor(model => model.Theme)
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.ExploreEditorFor(model => model.Theme)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.ExploreLabelFor(model => model.SearchEndDate)
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.ExploreEditorFor(model => model.SearchEndDate)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        @Html.ExploreLabelFor(model => model.BannerStatusIds)
+                                    </div>
+                                    <div class="col-md-8">
+                                        @Html.EditorFor(model => model.BannerStatusIds, new { SelectList = Model.AvailableOrderStatuses })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7 col-md-offset-5">
+                                <button type="button" id="search-orders" class="btn btn-primary btn-search">
+                                    <i class="fa fa-search"></i>
+                                    @T("Admin.Common.Search")
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div id="banners-grid"></div>
+
+                        <script>
+                            $(document).ready(function() {
+                                $("#banners-grid").kendoGrid({
+                                    dataSource: {
+                                        type: "json",
+                                        transport: {
+                                            read: {
+                                                url: "@Html.Raw(Url.Action("BannerList", "Banner"))",
+                                                type: "POST",
+                                                dataType: "json",
+                                                data: additionalData
+                                            }
+                                        },
+                                        schema: {
+                                            data: "Data",
+                                            total: "Total",
+                                            errors: "Errors"
+                                        },
+                                        requestEnd: function (e) {
+                                            if (e.type == "read") {
+                                                var response = e.response;
+                                                if (response) {
+                                                    //store extra data
+                                                    reportAggregates = e.response["ExtraData"];
+                                                }
+                                            }
+                                        },
+                                        error: function(e) {
+                                            display_kendoui_grid_error(e);
+                                            // Cancel the changes
+                                            this.cancelChanges();
+                                        },
+                                        pageSize: @(defaultGridPageSize),
+                                        serverPaging: true,
+                                        serverFiltering: true,
+                                        serverSorting: true
+                                    },
+                                    pageable: {
+                                        refresh: true,
+                                        pageSizes: [@(gridPageSizes)],
+                                        @Html.Partial("_GridPagerMessages")
+                                    },
+                                    editable: {
+                                        confirmation: "@T("Admin.Common.DeleteConfirmation")",
+                                        mode: "inline"
+                                    },
+                                    scrollable: false,
+                                    dataBound: onDataBound,
+                                    columns: [
+                                        {
+                                            field: "Id",
+                                            headerTemplate: "<input id='mastercheckbox' type='checkbox'/>",
+                                            headerAttributes: { style: "text-align:center" },
+                                            attributes: { style: "text-align:center" },
+                                            template: "<input type='checkbox' value='#=Id#' class='checkboxGroups'/>",
+                                            width: 50
+                                        }, {
+                                            field: "BannerImg",
+                                            title: "@T("Admin.Banner.Fields.BannerImg")",
+                                            template: '<img style="width: 100px" src="#=PictureModel.PictureUrl#" />',
+                                            width: 100
+                                        },
+                                        {
+                                            field: "Theme",
+                                            title: "@T("Admin.Banner.Fields.Theme")",
+                                            width: 150
+                                        },
+                                        {
+                                            field: "Type",
+                                            title: "@T("Admin.Banner.Fields.Type")",
+                                            width: 100
+                                        },{
+                                            field: "BannerLink",
+                                            title: "@T("Admin.Banner.Fields.BannerLink")",
+                                            width: 150
+                                        },{
+                                            field: "BannerOrder",
+                                            title: "@T("Admin.Banner.Fields.BannerOrder")",
+                                            width: 150
+                                        },
+                                        {
+                                            field: "ShowBeginDate",
+                                            title: "@T("Admin.Banner.Fields.ShowBeginDate")",
+                                            width: 100,
+                                            type: "date",
+                                            format: "{0:yyyy-MM-dd}"
+                                        },
+                                        {
+                                            field: "ShowEndDate",
+                                            title: "@T("Admin.Banner.Fields.ShowEndDate")",
+                                            width: 100,
+                                            type: "date",
+                                            format: "{0:yyyy-MM-dd}"
+                                        },
+                                        {
+                                            field: "CreateTime",
+                                            title: "@T("Admin.Banner.Fields.CreateTime")",
+                                            width: 150,
+                                            type: "date",
+                                            format: "{0:yyyy-MM-dd HH:mm:ss}"
+                                        },
+                                        {
+                                            field: "Status",
+                                            title: "@T("Admin.Banner.Fields.Status")",
+                                            width: 50,
+                                        },
+                                        {
+                                            field: "Id",
+                                            title: "@T("Admin.Common.View")",
+                                            width: 50,
+                                            headerAttributes: { style: "text-align:center" },
+                                            attributes: { style: "text-align:center" },
+                                            template: '<a class="btn btn-default" href="Edit/#=Id#"><i class="fa fa-eye"></i>@T("Admin.Common.View")</a>'
+                                        }
+                                    ]
+                                } );
+                            });
+                        </script>
+
+                        <script type="text/javascript">
+                            var selectedIds = [];
+                            var reportAggregates = "";
+
+                            $(document).ready(function () {
+                                //search button
+                                $('#search-orders').click(function () {
+                                    //search
+                                    var grid = $('#banners-grid').data('kendoGrid');
+                                    grid.dataSource.page(1); //new search. Set page size to 1
+                                    //grid.dataSource.read(); we already loaded the grid above using "page" function
+                                    //clear selected checkboxes
+                                    $('.checkboxGroups').attr('checked', false).change();
+                                    selectedIds = [];
+                                    return false;
+                                });
+
+                                $("".concat("#@Html.FieldIdFor(model => model.Theme)")).keydown(function (event) {
+                                    if (event.keyCode === 13) {
+                                        $("#search-orders").click();
+                                        return false;
+                                    }
+                                });
+
+                                $('#mastercheckbox').click(function () {
+                                    $('.checkboxGroups').attr('checked', $(this).is(':checked')).change();
+                                });
+
+                                //wire up checkboxes.
+                                $('#banners-grid').on('change', 'input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]', function (e) {
+                                    var $check = $(this);
+                                    if ($check.is(":checked") == true) {
+                                        var checked = jQuery.inArray($check.val(), selectedIds);
+                                        if (checked == -1) {
+                                            //add id to selectedIds.
+                                            selectedIds.push($check.val());
+                                        }
+                                    }
+                                    else {
+                                        var checked = jQuery.inArray($check.val(), selectedIds);
+                                        if (checked > -1) {
+                                            //remove id from selectedIds.
+                                            selectedIds = $.grep(selectedIds, function (item, index) {
+                                                return item != $check.val();
+                                            });
+                                        }
+                                    }
+                                    updateMasterCheckbox();
+                                });
+                            });
+
+                            function additionalData() {
+                                var data = {
+                                    SearchStartDate: $('#@Html.FieldIdFor(model => model.SearchStartDate)').val(),
+                                    SearchEndDate: $('#@Html.FieldIdFor(model => model.SearchEndDate)').val(),
+                                    BannerStatusIds: $('#@Html.FieldIdFor(model => model.BannerStatusIds)').val(),
+                                    Theme: $('#@Html.FieldIdFor(model => model.Theme)').val()
+                                };
+                                addAntiForgeryToken(data);
+                                return data;
+                            }
+
+                            function onDataBound(e) {
+                                $('#banners-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').each(function () {
+                                    var currentId = $(this).val();
+                                    var checked = jQuery.inArray(currentId, selectedIds);
+                                    //set checked based on if current checkbox's value is in selectedIds.
+                                    $(this).attr('checked', checked > -1);
+                                });
+
+                                updateMasterCheckbox();
+
+                                //update order totals summary
+                                if (reportAggregates != "") {
+                                    for (var key in reportAggregates) {
+                                        $('#aggregator-profit-block').text(reportAggregates['aggregatorprofit']);
+                                        $('#aggregator-shipping-block').text(reportAggregates['aggregatorshipping']);
+                                        $('#aggregator-tax-block').text(reportAggregates['aggregatortax']);
+                                        $('#aggregator-total-block').text(reportAggregates['aggregatortotal']);
+                                    }
+                                }
+                            }
+
+                            function updateMasterCheckbox() {
+                                var numChkBoxes = $('#banners-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]').length;
+                                var numChkBoxesChecked = $('#banners-grid input[type=checkbox][id!=mastercheckbox][class=checkboxGroups]:checked').length;
+                                $('#mastercheckbox').attr('checked', numChkBoxes == numChkBoxesChecked && numChkBoxes > 0);
+                            }
+
+                            //delete selected
+                            $('#delete-selected').click(function(e) {
+                                e.preventDefault();
+
+                                var postData = {
+                                    selectedIds: selectedIds
+                                };
+                                addAntiForgeryToken(postData);
+
+                                $.ajax({
+                                    cache: false,
+                                    type: "POST",
+                                    url: "@(Url.Action("DeleteSelected", "Banner"))",
+                                    data: postData,
+                                complete: function(data) {
+                                    //reload grid
+                                    var grid = $('#banners-grid').data('kendoGrid');
+                                    grid.dataSource.read();
+                                },
+                                error: function(xhr, ajaxOptions, thrownError) {
+                                    alert(thrownError);
+                                },
+                                traditional: true
+                            });
+                            return false;
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -136,21 +136,29 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\Thumbs\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BannerController.cs" />
     <Compile Include="Controllers\BaseAdminController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\GameStatisticsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WidgetController.cs" />
     <Compile Include="Extensions\MappingExtensions.cs" />
+    <Compile Include="Factories\BannerModeIFactory.cs" />
     <Compile Include="Factories\CustomerModelFactory.cs" />
+    <Compile Include="Factories\GameStatisticsModelFactory.cs" />
+    <Compile Include="Factories\IBannerModelFactory.cs" />
     <Compile Include="Factories\ICustomerModelFactory.cs" />
+    <Compile Include="Factories\IGameStatisticsModelFactory.cs" />
     <Compile Include="Factories\IUserModelFactory.cs" />
     <Compile Include="Factories\UserModelFactory.cs" />
     <Compile Include="Global.asax.cs">
@@ -162,11 +170,16 @@
     <Compile Include="Infrastructure\RouteProvider.cs" />
     <Compile Include="Models\Cms\RenderWidgetModel.cs" />
     <Compile Include="Models\Cms\WidgetModel.cs" />
+    <Compile Include="Models\Content\BannerListModel.cs" />
+    <Compile Include="Models\Content\BannerModel.cs" />
     <Compile Include="Models\Customer\LoginModel.cs" />
     <Compile Include="Models\Customer\RegisterModel.cs" />
+    <Compile Include="Models\Game\GameDailyStatisticsListModel.cs" />
+    <Compile Include="Models\Game\GameDailyStatisticsModel.cs" />
     <Compile Include="Models\User\UserListModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\Content\BannerValidate.cs" />
     <Compile Include="Validators\Customer\LoginValidator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -356,11 +369,15 @@
     <Content Include="Content\iCheck\square\_all.css" />
     <Content Include="Content\images\ajax-loading.gif" />
     <Content Include="Content\images\ajax_loader_small.gif" />
+    <Content Include="Content\images\default-avatar.jpg" />
+    <Content Include="Content\images\default-image.gif" />
+    <Content Include="Content\images\default-image.png" />
     <Content Include="Content\images\google-maps.gif" />
     <Content Include="Content\images\logo-mini.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\search-icon.png" />
     <Content Include="Content\images\throbber-synchronizing.gif" />
+    <Content Include="Content\images\uploaded\placeholder.txt" />
     <Content Include="Content\images\warnings-ajax-loader.gif" />
     <Content Include="Content\jquery-ui-themes\smoothness\images\animated-overlay.gif" />
     <Content Include="Content\jquery-ui-themes\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -558,6 +575,18 @@
     <Content Include="Scripts\bootstrap\bootstrap.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\npm.js" />
+    <Content Include="Scripts\fineuploader\edit.gif" />
+    <Content Include="Scripts\fineuploader\fineuploader-4.2.2.css" />
+    <Content Include="Scripts\fineuploader\fineuploader-4.2.2.min.css" />
+    <Content Include="Scripts\fineuploader\iframe.xss.response-4.2.2.js" />
+    <Content Include="Scripts\fineuploader\jquery.fineuploader-4.2.2.js" />
+    <Content Include="Scripts\fineuploader\jquery.fineuploader-4.2.2.min.js" />
+    <Content Include="Scripts\fineuploader\loading.gif" />
+    <Content Include="Scripts\fineuploader\placeholders\not_available-generic.png" />
+    <Content Include="Scripts\fineuploader\placeholders\waiting-generic.png" />
+    <Content Include="Scripts\fineuploader\processing.gif" />
+    <Content Include="Scripts\fineuploader\templates\default.html" />
+    <Content Include="Scripts\fineuploader\templates\simple-thumbnails.html" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.custom.min.js" />
@@ -1146,6 +1175,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Explore.pubxml" />
+    <Content Include="Views\Banner\List.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultiSelect.cshtml" />
+    <Content Include="Views\Banner\Edit.cshtml" />
+    <Content Include="Views\Banner\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\Banner\_CreateOrUpdate.Info.cshtml" />
+    <Content Include="Views\Banner\_CreateOrUpdate.Pictures.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Picture.cshtml" />
+    <Content Include="Scripts\fineuploader\LICENSE" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\Delete.cshtml" />
+    <Content Include="Views\Banner\Create.cshtml" />
+    <Content Include="Views\GameStatistics\DailyList.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1163,9 +1204,10 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1636</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1551/</IISUrl>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>
+          </DevelopmentServerVPath>
+          <IISUrl>http://localhost:11015/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

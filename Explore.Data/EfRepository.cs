@@ -121,7 +121,7 @@ namespace Explore.Data
                 if (entity == null)
                     throw new ArgumentNullException("entity");
 
-                this._context.SaveChanges();
+                int a= this._context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {

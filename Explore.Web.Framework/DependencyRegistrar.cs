@@ -31,6 +31,10 @@ using Explore.Services.Events;
 using Explore.Services.Cms;
 using Explore.Core.Plugins;
 using Explore.Services.Users;
+using Explore.Services.Content;
+using Explore.Services.Media;
+using Explore.Services.Game;
+using Explore.Services.ExportImport;
 
 namespace Explore.Web.Framework
 {
@@ -116,9 +120,16 @@ namespace Explore.Web.Framework
             builder.RegisterType<CustomerRegistrationService>().As<ICustomerRegistrationService>().InstancePerLifetimeScope();
             builder.RegisterType<EncryptionService>().As<IEncryptionService>().InstancePerLifetimeScope();
             builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerLifetimeScope();
+            builder.RegisterType<BannerService>().As<IBannerService>().InstancePerLifetimeScope();
+            builder.RegisterType<GameStatisticsService>().As<IGameStatisticsService>().InstancePerLifetimeScope();
+            builder.RegisterType<PictureService>().As<IPictureService>().InstancePerLifetimeScope();
+            builder.RegisterType<ExportManager>().As<IExportManager>().InstancePerLifetimeScope();
+
 
 
             builder.RegisterType<DefaultLogger>().As<ILogger>().InstancePerLifetimeScope();
+
+            builder.RegisterType<DateTimeHelper>().As<IDateTimeHelper>().InstancePerLifetimeScope();
 
             //work context
             builder.RegisterType<WebWorkContext>().As<IWorkContext>().InstancePerLifetimeScope();

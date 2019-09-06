@@ -123,10 +123,10 @@ namespace Explore.Services.Configuration
         #region Methods
 
         /// <summary>
-        /// Adds a setting
+        /// 添加设置
         /// </summary>
-        /// <param name="setting">Setting</param>
-        /// <param name="clearCache">A value indicating whether to clear cache after setting update</param>
+        /// <param name="setting">设置对象</param>
+        /// <param name="clearCache">一个值，指示设置更新后是否清除缓存</param>
         public virtual void InsertSetting(Setting setting, bool clearCache = true)
         {
             if (setting == null)
@@ -143,10 +143,10 @@ namespace Explore.Services.Configuration
         }
 
         /// <summary>
-        /// Updates a setting
+        /// 更新设置
         /// </summary>
-        /// <param name="setting">Setting</param>
-        /// <param name="clearCache">A value indicating whether to clear cache after setting update</param>
+        /// <param name="setting">设置对象</param>
+        /// <param name="clearCache">一个值，指示设置更新后是否清除缓存</param>
         public virtual void UpdateSetting(Setting setting, bool clearCache = true)
         {
             if (setting == null)
@@ -278,13 +278,13 @@ namespace Explore.Services.Configuration
         }
 
         /// <summary>
-        /// Set setting value
+        /// 设定设定值
         /// </summary>
         /// <typeparam name="T">Type</typeparam>
-        /// <param name="key">Key</param>
-        /// <param name="value">Value</param>
-        /// <param name="storeId">Store identifier</param>
-        /// <param name="clearCache">A value indicating whether to clear cache after setting update</param>
+        /// <param name="key">键</param>
+        /// <param name="value">值</param>
+        /// <param name="storeId">存储标识符</param>
+        /// <param name="clearCache">一个值，指示设置更新后是否清除缓存</param>
         public virtual void SetSetting<T>(string key, T value, int storeId = 0, bool clearCache = true)
         {
             if (key == null)

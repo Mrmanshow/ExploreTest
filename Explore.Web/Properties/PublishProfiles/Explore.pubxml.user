@@ -45,11 +45,14 @@
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>06/21/2019 10:14:54</publishTime>
     </File>
+    <File Include="bin/EPPlus.dll">
+      <publishTime>09/06/2019 13:39:58</publishTime>
+    </File>
     <File Include="bin/es/FluentValidation.resources.dll">
       <publishTime>03/15/2017 18:29:58</publishTime>
     </File>
     <File Include="bin/Explore.Core.dll">
-      <publishTime>08/23/2019 17:10:56</publishTime>
+      <publishTime>09/06/2019 15:33:07</publishTime>
     </File>
     <File Include="bin/Explore.Core.dll.config">
       <publishTime>08/06/2019 19:25:43</publishTime>
@@ -58,7 +61,7 @@
       <publishTime>08/23/2019 17:10:56</publishTime>
     </File>
     <File Include="bin/Explore.Data.dll">
-      <publishTime>08/23/2019 17:27:50</publishTime>
+      <publishTime>09/06/2019 15:33:07</publishTime>
     </File>
     <File Include="bin/Explore.Data.dll.config">
       <publishTime>08/23/2019 17:26:13</publishTime>
@@ -67,7 +70,7 @@
       <publishTime>08/23/2019 17:27:50</publishTime>
     </File>
     <File Include="bin/Explore.Services.dll">
-      <publishTime>08/23/2019 17:27:51</publishTime>
+      <publishTime>09/06/2019 15:33:08</publishTime>
     </File>
     <File Include="bin/Explore.Services.dll.config">
       <publishTime>08/23/2019 17:26:13</publishTime>
@@ -76,10 +79,10 @@
       <publishTime>08/23/2019 17:27:51</publishTime>
     </File>
     <File Include="bin/Explore.Web.dll">
-      <publishTime>08/23/2019 18:26:24</publishTime>
+      <publishTime>09/06/2019 15:33:11</publishTime>
     </File>
     <File Include="bin/Explore.Web.Framework.dll">
-      <publishTime>08/23/2019 17:27:51</publishTime>
+      <publishTime>09/06/2019 15:33:09</publishTime>
     </File>
     <File Include="bin/Explore.Web.Framework.dll.config">
       <publishTime>08/23/2019 17:26:13</publishTime>
@@ -104,6 +107,9 @@
     </File>
     <File Include="bin/fr/FluentValidation.resources.dll">
       <publishTime>03/15/2017 18:29:58</publishTime>
+    </File>
+    <File Include="bin/ImageResizer.dll">
+      <publishTime>09/03/2019 14:42:34</publishTime>
     </File>
     <File Include="bin/it/FluentValidation.resources.dll">
       <publishTime>03/15/2017 18:29:58</publishTime>
@@ -801,6 +807,15 @@
     <File Include="Content/images/ajax_loader_small.gif">
       <publishTime>08/13/2019 14:45:09</publishTime>
     </File>
+    <File Include="Content/images/default-avatar.jpg">
+      <publishTime>09/03/2019 15:44:27</publishTime>
+    </File>
+    <File Include="Content/images/default-image.gif">
+      <publishTime>09/03/2019 15:44:27</publishTime>
+    </File>
+    <File Include="Content/images/default-image.png">
+      <publishTime>09/03/2019 15:44:27</publishTime>
+    </File>
     <File Include="Content/images/google-maps.gif">
       <publishTime>08/13/2019 14:45:09</publishTime>
     </File>
@@ -815,6 +830,9 @@
     </File>
     <File Include="Content/images/throbber-synchronizing.gif">
       <publishTime>08/13/2019 14:45:09</publishTime>
+    </File>
+    <File Include="Content/images/uploaded/placeholder.txt">
+      <publishTime>09/03/2019 15:44:27</publishTime>
     </File>
     <File Include="Content/images/warnings-ajax-loader.gif">
       <publishTime>08/13/2019 14:45:09</publishTime>
@@ -1408,13 +1426,52 @@
       <publishTime>08/13/2019 14:44:38</publishTime>
     </File>
     <File Include="Scripts/bootstrap/bootstrap.js">
-      <publishTime>08/05/2019 15:48:28</publishTime>
+      <publishTime>09/04/2019 18:37:21</publishTime>
     </File>
     <File Include="Scripts/bootstrap/bootstrap.min.js">
-      <publishTime>08/05/2019 15:48:28</publishTime>
+      <publishTime>09/04/2019 18:37:21</publishTime>
     </File>
     <File Include="Scripts/bootstrap/npm.js">
       <publishTime>08/05/2019 15:48:28</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/edit.gif">
+      <publishTime>09/03/2019 15:22:44</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/fineuploader-4.2.2.css">
+      <publishTime>09/03/2019 15:22:44</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/fineuploader-4.2.2.min.css">
+      <publishTime>09/03/2019 15:22:44</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/iframe.xss.response-4.2.2.js">
+      <publishTime>09/03/2019 15:22:44</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/jquery.fineuploader-4.2.2.js">
+      <publishTime>09/03/2019 15:22:44</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/jquery.fineuploader-4.2.2.min.js">
+      <publishTime>09/03/2019 15:22:44</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/LICENSE">
+      <publishTime>09/03/2019 15:22:44</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/loading.gif">
+      <publishTime>09/03/2019 15:22:44</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/placeholders/not_available-generic.png">
+      <publishTime>09/03/2019 15:22:44</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/placeholders/waiting-generic.png">
+      <publishTime>09/03/2019 15:22:44</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/processing.gif">
+      <publishTime>09/03/2019 15:22:44</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/templates/default.html">
+      <publishTime>09/03/2019 15:22:44</publishTime>
+    </File>
+    <File Include="Scripts/fineuploader/templates/simple-thumbnails.html">
+      <publishTime>09/03/2019 15:22:44</publishTime>
     </File>
     <File Include="Scripts/jquery-1.10.2.min.js">
       <publishTime>08/05/2019 13:50:04</publishTime>
@@ -2896,19 +2953,52 @@
       <publishTime>08/13/2019 14:43:09</publishTime>
     </File>
     <File Include="sitemap.config">
-      <publishTime>08/22/2019 17:36:24</publishTime>
+      <publishTime>09/06/2019 14:46:22</publishTime>
+    </File>
+    <File Include="Views/Banner/Create.cshtml">
+      <publishTime>09/05/2019 11:10:13</publishTime>
+    </File>
+    <File Include="Views/Banner/Edit.cshtml">
+      <publishTime>09/04/2019 18:54:47</publishTime>
+    </File>
+    <File Include="Views/Banner/List.cshtml">
+      <publishTime>09/05/2019 10:13:16</publishTime>
+    </File>
+    <File Include="Views/Banner/_CreateOrUpdate.cshtml">
+      <publishTime>09/04/2019 18:45:05</publishTime>
+    </File>
+    <File Include="Views/Banner/_CreateOrUpdate.Info.cshtml">
+      <publishTime>09/04/2019 18:11:15</publishTime>
+    </File>
+    <File Include="Views/Banner/_CreateOrUpdate.Pictures.cshtml">
+      <publishTime>09/03/2019 11:16:34</publishTime>
+    </File>
+    <File Include="Views/GameStatistics/DailyList.cshtml">
+      <publishTime>09/06/2019 14:23:36</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>07/11/2019 18:25:08</publishTime>
+      <publishTime>08/23/2019 20:31:12</publishTime>
+    </File>
+    <File Include="Views/Shared/Delete.cshtml">
+      <publishTime>09/04/2019 18:57:00</publishTime>
+    </File>
+    <File Include="Views/Shared/EditorTemplates/Date.cshtml">
+      <publishTime>09/04/2019 15:02:21</publishTime>
     </File>
     <File Include="Views/Shared/EditorTemplates/DateNullable.cshtml">
       <publishTime>08/23/2019 16:43:30</publishTime>
+    </File>
+    <File Include="Views/Shared/EditorTemplates/MultiSelect.cshtml">
+      <publishTime>09/02/2019 20:04:14</publishTime>
+    </File>
+    <File Include="Views/Shared/EditorTemplates/Picture.cshtml">
+      <publishTime>09/04/2019 18:12:02</publishTime>
     </File>
     <File Include="Views/Shared/Menu.cshtml">
       <publishTime>08/13/2019 17:05:30</publishTime>
     </File>
     <File Include="Views/Shared/_AdminLayout.cshtml">
-      <publishTime>08/23/2019 15:05:21</publishTime>
+      <publishTime>09/04/2019 18:36:24</publishTime>
     </File>
     <File Include="Views/Shared/_GridPagerMessages.cshtml">
       <publishTime>08/22/2019 17:42:39</publishTime>
@@ -2923,7 +3013,7 @@
       <publishTime>07/18/2019 19:56:04</publishTime>
     </File>
     <File Include="Views/Users/List.cshtml">
-      <publishTime>08/23/2019 17:06:42</publishTime>
+      <publishTime>08/23/2019 20:31:55</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>08/05/2019 19:50:26</publishTime>
@@ -2935,7 +3025,7 @@
       <publishTime>07/11/2019 18:23:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/23/2019 17:36:43</publishTime>
+      <publishTime>09/06/2019 15:33:12</publishTime>
     </File>
   </ItemGroup>
 </Project>

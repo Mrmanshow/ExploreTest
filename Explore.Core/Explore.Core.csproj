@@ -135,6 +135,10 @@
     <Compile Include="Domain\Common\FulltextSearchMode.cs" />
     <Compile Include="Domain\Common\GenericAttribute.cs" />
     <Compile Include="Domain\Configuration\Setting.cs" />
+    <Compile Include="Domain\Content\Banner.cs" />
+    <Compile Include="Domain\Content\BannerPicture.cs" />
+    <Compile Include="Domain\Content\BannerStatus.cs" />
+    <Compile Include="Domain\Content\BannerType.cs" />
     <Compile Include="Domain\Customers\Customer.cs" />
     <Compile Include="Domain\Customers\CustomerExtensions.cs" />
     <Compile Include="Domain\Customers\CustomerPassword.cs" />
@@ -148,6 +152,13 @@
     <Compile Include="Domain\Customers\SystemCustomerRoleNames.cs" />
     <Compile Include="Domain\Customers\UserRegistrationType.cs" />
     <Compile Include="Domain\Directory\RoundingType.cs" />
+    <Compile Include="Domain\Game\GameTurnover.cs" />
+    <Compile Include="Domain\Game\GameType.cs" />
+    <Compile Include="Domain\Game\LabaOrder.cs" />
+    <Compile Include="Domain\Game\LuckEggOrder.cs" />
+    <Compile Include="Domain\Game\LuckEggOrderDetail.cs" />
+    <Compile Include="Domain\Game\ScratchCard.cs" />
+    <Compile Include="Domain\Game\Sea.cs" />
     <Compile Include="Domain\Localization\ILocalizedEntity.cs" />
     <Compile Include="Domain\Localization\LocaleStringResource.cs" />
     <Compile Include="Domain\Localization\LocalizationService.cs" />
@@ -157,6 +168,7 @@
     <Compile Include="Domain\Logging\ActivityLogType.cs" />
     <Compile Include="Domain\Logging\Log.cs" />
     <Compile Include="Domain\Logging\LogLevel.cs" />
+    <Compile Include="Domain\Media\MediaSettings.cs" />
     <Compile Include="Domain\Media\Picture.cs" />
     <Compile Include="Domain\Media\PictureType.cs" />
     <Compile Include="Domain\Security\DefaultPermissionRecord.cs" />

@@ -41,7 +41,11 @@ namespace Explore.Web.Infrastructure
             builder.RegisterType<CustomerModelFactory>().As<ICustomerModelFactory>()
                 .InstancePerLifetimeScope();
             builder.RegisterType<UserModelFactory>().As<IUserModelFactory>()
-          .InstancePerLifetimeScope();
+                .InstancePerLifetimeScope();
+            builder.RegisterType<BannerModeIFactory>().As<IBannerModelFactory>()
+                .InstancePerLifetimeScope();
+            builder.RegisterType<GameStatisticsModelFactory>().As<IGameStatisticsModelFactory>()
+                .InstancePerLifetimeScope();
         }
 
         /// <summary>

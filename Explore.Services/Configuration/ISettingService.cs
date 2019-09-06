@@ -55,13 +55,13 @@ namespace Explore.Services.Configuration
             int storeId = 0, bool loadSharedValueIfNotFound = false);
 
         /// <summary>
-        /// Set setting value
+        /// 设定设定值
         /// </summary>
         /// <typeparam name="T">Type</typeparam>
-        /// <param name="key">Key</param>
-        /// <param name="value">Value</param>
-        /// <param name="storeId">Store identifier</param>
-        /// <param name="clearCache">A value indicating whether to clear cache after setting update</param>
+        /// <param name="key">键</param>
+        /// <param name="value">值</param>
+        /// <param name="storeId">存储标识符</param>
+        /// <param name="clearCache">一个值，指示设置更新后是否清除缓存</param>
         void SetSetting<T>(string key, T value, int storeId = 0, bool clearCache = true);
 
         /// <summary>

@@ -29,6 +29,7 @@
     Html.AppendCssFileParts("~/Content/adminLTE/skins/_all-skins.min.css");
 
     //scripts
+    Html.AppendScriptParts(string.Format("~/Scripts/kendo/{0}/cultures/kendo.culture.zh-CN.min.js", kendoVersion));
     Html.AppendScriptParts(string.Format("~/Scripts/kendo/{0}/kendo.web.min.js", kendoVersion));
     Html.AppendScriptParts("~/Scripts/admin.search.js");
     Html.AppendScriptParts("~/scripts/admin.navigation.js");
@@ -241,6 +242,8 @@
         <a id="backTop" class="btn btn-back-top bg-teal"></a>
         <script>
             $(document).ready(function () {
+                kendo.culture("zh-CN");
+
                 $('#backTop').backTop();
 
                 $('a.sidebar-toggle').on('click', function () {
