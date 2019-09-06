@@ -1,9 +1,11 @@
 ﻿using Explore.Core.Domain.Content;
+using Explore.Core.Domain.Game;
 using Explore.Core.Domain.Users;
 using Explore.Core.Infrastructure.Mapper;
 using Explore.Services.Cms;
 using Explore.Web.Models.Cms;
 using Explore.Web.Models.Content;
+using Explore.Web.Models.Game;
 using Explore.Web.Models.User;
 using System;
 using System.Collections.Generic;
@@ -57,6 +59,15 @@ namespace Explore.Web.Extensions
         public static Banner ToEntity(this BannerModel model, Banner destination)
         {
             return model.MapTo(destination);
+        }
+
+        #endregion
+
+        #region Game
+
+        public static GameDailyStatisticsModel ToModel(this GameTurnover entity)
+        {
+            return entity.MapTo<GameTurnover, GameDailyStatisticsModel>();
         }
 
         #endregion

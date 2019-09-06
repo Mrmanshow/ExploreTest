@@ -44,6 +44,8 @@ namespace Explore.Web.Infrastructure
                 .InstancePerLifetimeScope();
             builder.RegisterType<BannerModeIFactory>().As<IBannerModelFactory>()
                 .InstancePerLifetimeScope();
+            builder.RegisterType<GameStatisticsModelFactory>().As<IGameStatisticsModelFactory>()
+                .InstancePerLifetimeScope();
         }
 
         /// <summary>

@@ -46,11 +46,24 @@ namespace Explore.Core
         bool IsCurrentConnectionSecured();
 
         /// <summary>
-        /// Gets server variable by name
+        /// 按名称获取服务器变量
         /// </summary>
-        /// <param name="name">Name</param>
-        /// <returns>Server variable</returns>
+        /// <param name="name">名称</param>
+        /// <returns>服务器变量</returns>
         string ServerVariables(string name);
+
+        /// <summary>
+        /// 获取主机名
+        /// </summary>
+        /// <returns>主机名</returns>
+        string GetStoreLocation();
+
+        /// <summary>
+        /// 获取主机名
+        /// </summary>
+        /// <param name="useSsl">使用SSL</param>
+        /// <returns>主机名</returns>
+        string GetStoreLocation(bool useSsl);
 
         /// <summary>
         /// Returns true if the requested resource is one of the typical resources that needn't be processed by the cms engine.

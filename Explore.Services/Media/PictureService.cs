@@ -263,8 +263,7 @@ namespace Explore.Services.Media
         {
             storeLocation = !String.IsNullOrEmpty(storeLocation)
                                     ? storeLocation
-                                    //: _webHelper.GetStoreLocation();
-                                    : "http://localhost:11015/";
+                                    : _webHelper.GetStoreLocation();
 
             var url = storeLocation + "content/images/thumbs/";
 
@@ -390,8 +389,7 @@ namespace Explore.Services.Media
             {
                 string url = (!String.IsNullOrEmpty(storeLocation)
                                  ? storeLocation
-                                 //: _webHelper.GetStoreLocation())
-                                 : "http://localhost:11015/")
+                                 : _webHelper.GetStoreLocation())
                                  + "content/images/" + defaultImageFileName;
                 return url;
             }

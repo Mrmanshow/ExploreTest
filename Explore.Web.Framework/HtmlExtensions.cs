@@ -236,6 +236,26 @@ namespace Explore.Web.Framework
             return MvcHtmlString.Create(result.ToString());
         }
 
+        public static MvcHtmlString ExploreDropDownList<TModel>(this HtmlHelper<TModel> helper, string name,
+            IEnumerable<SelectListItem> itemList, object htmlAttributes = null,
+            bool renderFormControlClass = true, bool required = false)
+        {
+            var result = new StringBuilder();
+
+            var attrs = HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes);
+            if (renderFormControlClass)
+                attrs = AddFormControlClassToHtmlAttributes(attrs);
+
+            if (required)
+                result.AppendFormat(
+                    "<div class=\"input-group input-group-required\">{0}<div class=\"input-group-btn\"><span class=\"required\">*</span></div></div>",
+                    helper.DropDownList(name, itemList, attrs));
+            else
+                result.Append(helper.DropDownList(name, itemList, attrs));
+
+            return MvcHtmlString.Create(result.ToString());
+        }
+
         public static MvcHtmlString ExploreDropDownListFor<TModel, TValue>(this HtmlHelper<TModel> helper,
             Expression<Func<TModel, TValue>> expression, IEnumerable<SelectListItem> itemList,
             object htmlAttributes = null, bool renderFormControlClass = true, bool required = false)

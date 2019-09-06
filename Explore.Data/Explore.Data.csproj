@@ -67,6 +67,11 @@
     <Compile Include="Mapping\Customers\CustomerPasswordMap.cs" />
     <Compile Include="Mapping\Customers\CustomerRoleMap.cs" />
     <Compile Include="Mapping\ExploreEntityTypeConfiguration.cs" />
+    <Compile Include="Mapping\Game\LabaOrderMap.cs" />
+    <Compile Include="Mapping\Game\LuckEggOrderDetailMap.cs" />
+    <Compile Include="Mapping\Game\LuckEggOrderMap.cs" />
+    <Compile Include="Mapping\Game\ScratchCardMap.cs" />
+    <Compile Include="Mapping\Game\SeaMap.cs" />
     <Compile Include="Mapping\Localization\LocaleStringResourceMap.cs" />
     <Compile Include="Mapping\Logging\ActivityLogTypeMap.cs" />
     <Compile Include="Mapping\Logging\LogMap.cs" />

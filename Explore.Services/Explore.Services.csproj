@@ -34,6 +34,9 @@
       <HintPath>..\packages\Autofac.4.9.2\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\packages\EPPlus.4.5.3.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="ImageResizer">
       <HintPath>..\packages\ImageResizer.4.2.5\lib\net45\ImageResizer.dll</HintPath>
     </Reference>
@@ -41,9 +44,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -109,7 +115,14 @@
     <Compile Include="Events\IEventPublisher.cs" />
     <Compile Include="Events\ISubscriptionService.cs" />
     <Compile Include="Events\SubscriptionService.cs" />
+    <Compile Include="ExportImport\ExportManager.cs" />
+    <Compile Include="ExportImport\Extensions.cs" />
+    <Compile Include="ExportImport\Help\PropertyByName.cs" />
+    <Compile Include="ExportImport\Help\PropertyManager.cs" />
+    <Compile Include="ExportImport\IExportManager.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Game\GameStatisticsService.cs" />
+    <Compile Include="Game\IGameStatisticsService.cs" />
     <Compile Include="Helpers\BrowscapXmlParser.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\DateTimeSettings.cs" />

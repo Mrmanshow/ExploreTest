@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Explore.Core.Domain.Content;
 using Explore.Core.Domain.Customers;
+using Explore.Core.Domain.Game;
 using Explore.Core.Domain.Users;
 using Explore.Core.Infrastructure.Mapper;
 using Explore.Services.Cms;
 using Explore.Web.Models.Cms;
 using Explore.Web.Models.Content;
+using Explore.Web.Models.Game;
 using Explore.Web.Models.User;
 using System;
 using System.Collections.Generic;
@@ -70,6 +72,14 @@ namespace Explore.Web.Infrastructure.Mapper
                     .ForMember(dest => dest.CreateTime, mo => mo.Ignore())
                     .ForMember(dest => dest.Status, mo => mo.MapFrom(src => Int32.Parse(src.Status)))
                     .ForMember(dest => dest.Type, mo => mo.MapFrom(src => Int32.Parse(src.Type)));
+
+                cfg.CreateMap<GameTurnover, GameDailyStatisticsModel>()
+                    .ForMember(dest => dest.GameCount, mo => mo.MapFrom(src => src.GameCount))
+                    .ForMember(dest => dest.GameUser, mo => mo.MapFrom(src => src.GameUser))
+                    .ForMember(dest => dest.GameWin, mo => mo.MapFrom(src => src.GameWin))
+                    .ForMember(dest => dest.GameFail, mo => mo.MapFrom(src => src.GameFail))
+                    .ForMember(dest => dest.CreateTime, mo => mo.MapFrom(src => src.CreateTime));
+
             };
             return action;
         }

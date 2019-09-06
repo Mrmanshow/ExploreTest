@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminAuthorizeAttribute.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\FormValueRequiredAttribute.cs" />
     <Compile Include="Controllers\ParameterBasedOnFormNameAttribute.cs" />
     <Compile Include="CustomerLastActivityAttribute.cs" />
     <Compile Include="DependencyRegistrar.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="MVC\NullJsonResult.cs" />
     <Compile Include="MVC\Routes\IRoutePublisher.cs" />
     <Compile Include="MVC\Routes\RoutePublisher.cs" />
+    <Compile Include="MVC\XmlDownloadResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AdminAntiForgeryAttribute.cs" />
     <Compile Include="Security\Captcha\CaptchaSettings.cs" />
