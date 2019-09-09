@@ -1,2 +1,0 @@
-DataProvider: sqlserver
-DataConnectionString: Data Source=103.219.34.161,3433;Initial Catalog=XianyuTest;Integrated Security=False;Persist Security Info=False;User ID=test;Password=q123456
