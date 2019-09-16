@@ -154,7 +154,11 @@
     <Compile Include="Domain\Directory\RoundingType.cs" />
     <Compile Include="Domain\Game\GameTurnover.cs" />
     <Compile Include="Domain\Game\GameType.cs" />
-    <Compile Include="Domain\Game\LabaOrder.cs" />
+    <Compile Include="Domain\Game\Laba\LabaOrder.cs" />
+    <Compile Include="Domain\Game\Laba\LabaWinRoute.cs" />
+    <Compile Include="Domain\Game\Laba\LabaRouteStatus.cs" />
+    <Compile Include="Domain\Game\Laba\LabaType.cs" />
+    <Compile Include="Domain\Game\Laba\LabaWinRouteNew.cs" />
     <Compile Include="Domain\Game\LuckEggOrder.cs" />
     <Compile Include="Domain\Game\LuckEggOrderDetail.cs" />
     <Compile Include="Domain\Game\ScratchCard.cs" />
@@ -179,6 +183,7 @@
     <Compile Include="Domain\Seo\WwwRequirement.cs" />
     <Compile Include="Domain\Users\User.cs" />
     <Compile Include="Domain\Users\UserAssets.cs" />
+    <Compile Include="Domain\Users\UserRegisterType.cs" />
     <Compile Include="Events\EntityDeleted.cs" />
     <Compile Include="Events\EntityInserted.cs" />
     <Compile Include="Events\EntityUpdated.cs" />

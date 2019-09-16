@@ -121,7 +121,9 @@
     <Compile Include="ExportImport\Help\PropertyManager.cs" />
     <Compile Include="ExportImport\IExportManager.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Game\GameLabaService.cs" />
     <Compile Include="Game\GameStatisticsService.cs" />
+    <Compile Include="Game\IGameLabaService.cs" />
     <Compile Include="Game\IGameStatisticsService.cs" />
     <Compile Include="Helpers\BrowscapXmlParser.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />

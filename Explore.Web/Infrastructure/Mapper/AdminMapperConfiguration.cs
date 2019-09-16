@@ -2,6 +2,7 @@
 using Explore.Core.Domain.Content;
 using Explore.Core.Domain.Customers;
 using Explore.Core.Domain.Game;
+using Explore.Core.Domain.Game.Laba;
 using Explore.Core.Domain.Users;
 using Explore.Core.Infrastructure.Mapper;
 using Explore.Services.Cms;
@@ -79,6 +80,61 @@ namespace Explore.Web.Infrastructure.Mapper
                     .ForMember(dest => dest.GameWin, mo => mo.MapFrom(src => src.GameWin))
                     .ForMember(dest => dest.GameFail, mo => mo.MapFrom(src => src.GameFail))
                     .ForMember(dest => dest.CreateTime, mo => mo.MapFrom(src => src.CreateTime));
+
+                cfg.CreateMap<LabaWinRoute, GameLabaRouteModel>()
+                    .ForMember(dest => dest.Id, mo => mo.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.X1, mo => mo.MapFrom(src => src.X1))
+                    .ForMember(dest => dest.X2, mo => mo.MapFrom(src => src.X2))
+                    .ForMember(dest => dest.X3, mo => mo.MapFrom(src => src.X3))
+                    .ForMember(dest => dest.X4, mo => mo.MapFrom(src => src.X4))
+                    .ForMember(dest => dest.X5, mo => mo.MapFrom(src => src.X5))
+                    .ForMember(dest => dest.Y1, mo => mo.MapFrom(src => src.Y1))
+                    .ForMember(dest => dest.Y2, mo => mo.MapFrom(src => src.Y2))
+                    .ForMember(dest => dest.Y3, mo => mo.MapFrom(src => src.Y3))
+                    .ForMember(dest => dest.Y4, mo => mo.MapFrom(src => src.Y4))
+                    .ForMember(dest => dest.Y5, mo => mo.MapFrom(src => src.Y5))
+                    .ForMember(dest => dest.Status, mo => mo.MapFrom(src => src.Status));
+                cfg.CreateMap<LabaWinRouteNew, GameLabaRouteModel>()
+                    .ForMember(dest => dest.Id, mo => mo.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.X1, mo => mo.MapFrom(src => src.X1))
+                    .ForMember(dest => dest.X2, mo => mo.MapFrom(src => src.X2))
+                    .ForMember(dest => dest.X3, mo => mo.MapFrom(src => src.X3))
+                    .ForMember(dest => dest.X4, mo => mo.MapFrom(src => src.X4))
+                    .ForMember(dest => dest.X5, mo => mo.MapFrom(src => src.X5))
+                    .ForMember(dest => dest.Y1, mo => mo.MapFrom(src => src.Y1))
+                    .ForMember(dest => dest.Y2, mo => mo.MapFrom(src => src.Y2))
+                    .ForMember(dest => dest.Y3, mo => mo.MapFrom(src => src.Y3))
+                    .ForMember(dest => dest.Y4, mo => mo.MapFrom(src => src.Y4))
+                    .ForMember(dest => dest.Y5, mo => mo.MapFrom(src => src.Y5))
+                    .ForMember(dest => dest.Status, mo => mo.MapFrom(src => src.Status));
+                cfg.CreateMap<GameLabaRouteModel, LabaWinRoute>()
+                    .ForMember(dest => dest.Id, mo => mo.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.X1, mo => mo.MapFrom(src => src.X1))
+                    .ForMember(dest => dest.X2, mo => mo.MapFrom(src => src.X2))
+                    .ForMember(dest => dest.X3, mo => mo.MapFrom(src => src.X3))
+                    .ForMember(dest => dest.X4, mo => mo.MapFrom(src => src.X4))
+                    .ForMember(dest => dest.X5, mo => mo.MapFrom(src => src.X5))
+                    .ForMember(dest => dest.Y1, mo => mo.MapFrom(src => src.Y1))
+                    .ForMember(dest => dest.Y2, mo => mo.MapFrom(src => src.Y2))
+                    .ForMember(dest => dest.Y3, mo => mo.MapFrom(src => src.Y3))
+                    .ForMember(dest => dest.Y4, mo => mo.MapFrom(src => src.Y4))
+                    .ForMember(dest => dest.Y5, mo => mo.MapFrom(src => src.Y5))
+                    .ForMember(dest => dest.Status, mo => mo.MapFrom(src => Int32.Parse(src.Status)))
+                    .ForMember(dest => dest.CreateTime, mo => mo.Ignore());
+                cfg.CreateMap<GameLabaRouteModel, LabaWinRouteNew>()
+                    .ForMember(dest => dest.Id, mo => mo.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.X1, mo => mo.MapFrom(src => src.X1))
+                    .ForMember(dest => dest.X2, mo => mo.MapFrom(src => src.X2))
+                    .ForMember(dest => dest.X3, mo => mo.MapFrom(src => src.X3))
+                    .ForMember(dest => dest.X4, mo => mo.MapFrom(src => src.X4))
+                    .ForMember(dest => dest.X5, mo => mo.MapFrom(src => src.X5))
+                    .ForMember(dest => dest.Y1, mo => mo.MapFrom(src => src.Y1))
+                    .ForMember(dest => dest.Y2, mo => mo.MapFrom(src => src.Y2))
+                    .ForMember(dest => dest.Y3, mo => mo.MapFrom(src => src.Y3))
+                    .ForMember(dest => dest.Y4, mo => mo.MapFrom(src => src.Y4))
+                    .ForMember(dest => dest.Y5, mo => mo.MapFrom(src => src.Y5))
+                    .ForMember(dest => dest.Status, mo => mo.MapFrom(src => Int32.Parse(src.Status)))
+                    .ForMember(dest => dest.CreateTime, mo => mo.Ignore());
 
             };
             return action;

@@ -1,16 +1,17 @@
 ﻿@using Explore.Core.Infrastructure;
 @using Explore.Web.Framework;
 @using Explore.Web.Framework.UI;
-@model Explore.Web.Models.Content.BannerListModel
+
+@model Explore.Web.Models.Game.GameLabaRouteListModel
 
 @{
     var defaultGridPageSize = EngineContext.Current.Resolve<Explore.Core.Domain.Common.AdminAreaSettings>().DefaultGridPageSize;
     var gridPageSizes = EngineContext.Current.Resolve<Explore.Core.Domain.Common.AdminAreaSettings>().GridPageSizes;
 
     //page title
-    ViewBag.Title = T("Admin.Banner").Text;
+    ViewBag.Title = T("Admin.Game.LabaRoute").Text;
     //active menu item (system name)
-    Html.SetActiveMenuItemSystemName("Content Banner List");
+    Html.SetActiveMenuItemSystemName("Game Laba Route");
 }
 
 @using (Html.BeginForm())
@@ -18,16 +19,16 @@
     @Html.AntiForgeryToken()
     <div class="content-header clearfix">
         <h1 class="pull-left">
-            @T("Admin.Banner")
+            @T("Admin.Game.LabaRoute")
         </h1>
         <div class="pull-right">
             <a href="@Url.Action("Create")" class="btn bg-blue">
                 <i class="fa fa-plus-square"></i>
-                @T("Admin.Common.AddNew")
+                @T("Admin.Game.LabaRoute.AddNew")
             </a>
             <button type="button" id="delete-selected" class="btn bg-red">
                 <i class="fa fa-trash-o"></i>
-                @T("Admin.Common.Delete.Selected")
+                @T("Admin.Game.LabaRoute.Delete.Selected")
             </button>
         </div>
     </div>
@@ -41,41 +42,29 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <div class="col-md-4">
-                                        @Html.ExploreLabelFor(model => model.SearchStartDate)
+                                        @Html.ExploreLabelFor(model => model.LabaRouteStatusIds)
                                     </div>
                                     <div class="col-md-8">
-                                        @Html.ExploreEditorFor(model => model.SearchStartDate)
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        @Html.ExploreLabelFor(model => model.Theme)
-                                    </div>
-                                    <div class="col-md-8">
-                                        @Html.ExploreEditorFor(model => model.Theme)
+                                        @Html.EditorFor(model => model.LabaRouteStatusIds, new { SelectList = Model.AvailableRouteStatues })
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <div class="col-md-4">
-                                        @Html.ExploreLabelFor(model => model.SearchEndDate)
+                                        @Html.ExploreLabelFor(model => model.LabaTypeId)
                                     </div>
                                     <div class="col-md-8">
-                                        @Html.ExploreEditorFor(model => model.SearchEndDate)
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        @Html.ExploreLabelFor(model => model.BannerStatusIds)
-                                    </div>
-                                    <div class="col-md-8">
-                                        @Html.EditorFor(model => model.BannerStatusIds, new { SelectList = Model.AvailableBannerStatuses })
+                                        @Html.ExploreDropDownList("LabaTypeId", Model.AvasliableLabaTypes)
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
+
                         <div class="row">
                             <div class="col-md-7 col-md-offset-5">
                                 <button type="button" id="search-orders" class="btn btn-primary btn-search">
@@ -98,7 +87,7 @@
                                         type: "json",
                                         transport: {
                                             read: {
-                                                url: "@Html.Raw(Url.Action("BannerList", "Banner"))",
+                                                url: "@Html.Raw(Url.Action("RouteList", "Laba"))",
                                                 type: "POST",
                                                 dataType: "json",
                                                 data: additionalData
@@ -148,53 +137,61 @@
                                             template: "<input type='checkbox' value='#=Id#' class='checkboxGroups'/>",
                                             width: 50
                                         }, {
-                                            field: "BannerImg",
-                                            title: "@T("Admin.Banner.Fields.BannerImg")",
-                                            template: '<img style="width: 100px" src="#=PictureModel.PictureUrl#" />',
-                                            width: 100
-                                        },
-                                        {
-                                            field: "Theme",
-                                            title: "@T("Admin.Banner.Fields.Theme")",
-                                            width: 150
-                                        },
-                                        {
-                                            field: "Type",
-                                            title: "@T("Admin.Banner.Fields.Type")",
-                                            width: 100
+                                            field: "Sequence",
+                                            title: "@T("Admin.LabaRoute.Fields.Sequence")",
+                                            width: 50
                                         },{
-                                            field: "BannerLink",
-                                            title: "@T("Admin.Banner.Fields.BannerLink")",
-                                            width: 150
+                                            field: "X1",
+                                            title: "@T("Admin.LabaRoute.Fields.X1")",
+                                            width: 50
+                                        },
+                                        {
+                                            field: "Y1",
+                                            title: "@T("Admin.LabaRoute.Fields.Y1")",
+                                            width: 50
                                         },{
-                                            field: "BannerOrder",
-                                            title: "@T("Admin.Banner.Fields.BannerOrder")",
-                                            width: 150
+                                            field: "X2",
+                                            title: "@T("Admin.LabaRoute.Fields.X2")",
+                                            width: 50
                                         },
                                         {
-                                            field: "ShowBeginDate",
-                                            title: "@T("Admin.Banner.Fields.ShowBeginDate")",
-                                            width: 100,
-                                            type: "date",
-                                            format: "{0:yyyy-MM-dd}"
+                                            field: "Y2",
+                                            title: "@T("Admin.LabaRoute.Fields.Y2")",
+                                            width: 50,
                                         },
                                         {
-                                            field: "ShowEndDate",
-                                            title: "@T("Admin.Banner.Fields.ShowEndDate")",
-                                            width: 100,
-                                            type: "date",
-                                            format: "{0:yyyy-MM-dd}"
+                                            field: "X3",
+                                            title: "@T("Admin.LabaRoute.Fields.X3")",
+                                            width: 50
                                         },
                                         {
-                                            field: "CreateTime",
-                                            title: "@T("Admin.Banner.Fields.CreateTime")",
-                                            width: 150,
-                                            type: "date",
-                                            format: "{0:yyyy-MM-dd HH:mm:ss}"
+                                            field: "Y3",
+                                            title: "@T("Admin.LabaRoute.Fields.Y3")",
+                                            width: 50
+                                        },
+                                        {
+                                            field: "X4",
+                                            title: "@T("Admin.LabaRoute.Fields.X4")",
+                                            width: 50,
+                                        },
+                                        {
+                                            field: "Y4",
+                                            title: "@T("Admin.LabaRoute.Fields.Y4")",
+                                            width: 50,
+                                        },
+                                        {
+                                            field: "X5",
+                                            title: "@T("Admin.LabaRoute.Fields.X5")",
+                                            width: 50,
+                                        },
+                                        {
+                                            field: "Y5",
+                                            title: "@T("Admin.LabaRoute.Fields.Y5")",
+                                            width: 50,
                                         },
                                         {
                                             field: "Status",
-                                            title: "@T("Admin.Banner.Fields.Status")",
+                                            title: "@T("Admin.LabaRoute.Fields.Status")",
                                             width: 50,
                                         },
                                         {
@@ -203,7 +200,7 @@
                                             width: 50,
                                             headerAttributes: { style: "text-align:center" },
                                             attributes: { style: "text-align:center" },
-                                            template: '<a class="btn btn-default" href="Edit/#=Id#"><i class="fa fa-eye"></i>@T("Admin.Common.View")</a>'
+                                            template: '<a class="btn btn-default" onclick="edit(#=Id#)"><i class="fa fa-eye"></i>@T("Admin.Common.View")</a>'
                                         }
                                     ]
                                 } );
@@ -215,6 +212,8 @@
                             var reportAggregates = "";
 
                             $(document).ready(function () {
+                                $("[name='LabaTypeId']").val(@Model.LabaTypeId)
+
                                 //search button
                                 $('#search-orders').click(function () {
                                     //search
@@ -225,13 +224,6 @@
                                     $('.checkboxGroups').attr('checked', false).change();
                                     selectedIds = [];
                                     return false;
-                                });
-
-                                $("".concat("#@Html.FieldIdFor(model => model.Theme)")).keydown(function (event) {
-                                    if (event.keyCode === 13) {
-                                        $("#search-orders").click();
-                                        return false;
-                                    }
                                 });
 
                                 $('#mastercheckbox').click(function () {
@@ -261,12 +253,14 @@
                                 });
                             });
 
+                            function edit(id) {
+                                location.href = "EditRoute/"+id+"?labaType=" + $('#@Html.FieldIdFor(model => model.LabaTypeId)').val();
+                            }
+
                             function additionalData() {
                                 var data = {
-                                    SearchStartDate: $('#@Html.FieldIdFor(model => model.SearchStartDate)').val(),
-                                    SearchEndDate: $('#@Html.FieldIdFor(model => model.SearchEndDate)').val(),
-                                    BannerStatusIds: $('#@Html.FieldIdFor(model => model.BannerStatusIds)').val(),
-                                    Theme: $('#@Html.FieldIdFor(model => model.Theme)').val()
+                                    LabaTypeId: $('#@Html.FieldIdFor(model => model.LabaTypeId)').val(),
+                                    LabaRouteStatusIds: $('#@Html.FieldIdFor(model => model.LabaRouteStatusIds)').val(),
                                 };
                                 addAntiForgeryToken(data);
                                 return data;
@@ -281,16 +275,6 @@
                                 });
 
                                 updateMasterCheckbox();
-
-                                //update order totals summary
-                                if (reportAggregates != "") {
-                                    for (var key in reportAggregates) {
-                                        $('#aggregator-profit-block').text(reportAggregates['aggregatorprofit']);
-                                        $('#aggregator-shipping-block').text(reportAggregates['aggregatorshipping']);
-                                        $('#aggregator-tax-block').text(reportAggregates['aggregatortax']);
-                                        $('#aggregator-total-block').text(reportAggregates['aggregatortotal']);
-                                    }
-                                }
                             }
 
                             function updateMasterCheckbox() {
@@ -311,19 +295,19 @@
                                 $.ajax({
                                     cache: false,
                                     type: "POST",
-                                    url: "@(Url.Action("DeleteSelected", "Banner"))",
+                                    url: "@(Url.Action("RouteDeleteSelected", "Laba"))",
                                     data: postData,
-                                complete: function(data) {
-                                    //reload grid
-                                    var grid = $('#banners-grid').data('kendoGrid');
-                                    grid.dataSource.read();
-                                },
-                                error: function(xhr, ajaxOptions, thrownError) {
-                                    alert(thrownError);
-                                },
-                                traditional: true
-                            });
-                            return false;
+                                    complete: function(data) {
+                                        //reload grid
+                                        var grid = $('#banners-grid').data('kendoGrid');
+                                        grid.dataSource.read();
+                                    },
+                                    error: function(xhr, ajaxOptions, thrownError) {
+                                        alert(thrownError);
+                                    },
+                                    traditional: true
+                                });
+                                return false;
                             });
                         </script>
                     </div>

@@ -34,7 +34,7 @@ namespace Explore.Core.Infrastructure
             get { return AppDomain.CurrentDomain; }
         }
 
-        /// <summary>Gets or sets whether Nop should iterate assemblies in the app domain when loading Nop types. Loading patterns are applied when loading these assemblies.</summary>
+        /// <summary>获取或设置加载nop类型时nop是否应在应用程序域中迭代程序集。加载这些程序集时应用加载模式。</summary>
         public bool LoadAppDomainAssemblies
         {
             get { return loadAppDomainAssemblies; }
@@ -48,7 +48,7 @@ namespace Explore.Core.Infrastructure
             set { assemblyNames = value; }
         }
 
-        /// <summary>Gets the pattern for dlls that we know don't need to be investigated.</summary>
+        /// <summary>获取我们知道不需要调查的dll的模式。</summary>
         public string AssemblySkipLoadingPattern
         {
             get { return assemblySkipLoadingPattern; }
@@ -216,16 +216,16 @@ namespace Explore.Core.Infrastructure
         }
 
         /// <summary>
-        /// Check if a dll is one of the shipped dlls that we know don't need to be investigated.
+        /// 检查一个dll是否是我们知道不需要调查的已装运的dll之一。
         /// </summary>
         /// <param name="assemblyFullName">
-        /// The assembly name to match.
+        /// 要匹配的程序集名称。
         /// </param>
         /// <param name="pattern">
-        /// The regular expression pattern to match against the assembly name.
+        /// 要与程序集名称匹配的正则表达式模式。
         /// </param>
         /// <returns>
-        /// True if the pattern matches the assembly name.
+        /// 如果模式与程序集名称匹配，则为True。
         /// </returns>
         protected virtual bool Matches(string assemblyFullName, string pattern)
         {

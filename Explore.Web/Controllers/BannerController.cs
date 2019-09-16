@@ -64,8 +64,8 @@ namespace Explore.Web.Controllers
                 return AccessDeniedView();
 
             var model = new BannerListModel();
-            model.AvailableOrderStatuses = BannerStatus.Display.ToSelectList(false).ToList();
-            model.AvailableOrderStatuses.Insert(0, new SelectListItem 
+            model.AvailableBannerStatuses = BannerStatus.Display.ToSelectList(false).ToList();
+            model.AvailableBannerStatuses.Insert(0, new SelectListItem 
             { Text = _localizationService.GetResource("Admin.Common.All"), Value = "-1", Selected = true });
 
             return View(model);

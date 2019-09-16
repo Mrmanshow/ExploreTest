@@ -19,7 +19,9 @@ namespace Explore.Services.Security
         public static readonly PermissionRecord ManageUser = new PermissionRecord { Name = "Admin area. Manage User", SystemName = "ManageUser", Category = "User" };
         public static readonly PermissionRecord ManageBanner = new PermissionRecord { Name = "Admin area. Manage Banner", SystemName = "ManageBanner", Category = "Banner" };
         public static readonly PermissionRecord ManageGameDailyStatistics = new PermissionRecord { Name = "Admin area. Manage Game Daily Statistics", SystemName = "ManageGameDailyStatistics", Category = "GameDailyStatistics" };
-
+        public static readonly PermissionRecord ManageGameLaba = new PermissionRecord { Name = "Admin area. Manage Game Laba", SystemName = "ManageGameLaba", Category = "GameLaba" };
+        public static readonly PermissionRecord ManageGameLabaList = new PermissionRecord { Name = "Admin area. Manage Game Laba List", SystemName = "ManageGameLabaList", Category = "GameLaba" };
+        public static readonly PermissionRecord ManageGameLabaRoute = new PermissionRecord { Name = "Admin area. Manage Game Laba Route", SystemName = "ManageGameLabaRoute", Category = "GameLaba" };
 
 
 
@@ -31,7 +33,9 @@ namespace Explore.Services.Security
                 ManageAdministrator,
                 ManageUser,
                 ManageBanner,
-                ManageGameDailyStatistics
+                ManageGameDailyStatistics,
+                ManageGameLaba,
+                ManageGameLabaList
             };
         }
 
@@ -48,7 +52,8 @@ namespace Explore.Services.Security
                         ManageAdministrator,
                         ManageUser,
                         ManageBanner,
-                        ManageGameDailyStatistics
+                        ManageGameDailyStatistics,
+                        ManageGameLaba
                     }
                 },
                 new DefaultPermissionRecord 

@@ -26,10 +26,10 @@ namespace Explore.Data
             {
                 case "sqlserver":
                     return new SqlServerDataProvider();
-                case "sqlce":
+                //case "sqlce":
                     //return new SqlCeDataProvider();
                 default:
-                    throw new ExploreException(string.Format("Not supported dataprovider name: {0}", providerName));
+                    throw new ExploreException(string.Format("不支持的数据提供程序名称: {0}", providerName));
             }
         }
 

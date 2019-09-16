@@ -15,6 +15,8 @@ namespace Explore.Data.Mapping.Users
             this.HasKey(c => c.Id);
 
             this.HasOptional(c => c.UserAssets);
+            this.Ignore(x => x.UserRegisterType);
+
         }
     }
 }

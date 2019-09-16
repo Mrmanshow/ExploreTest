@@ -147,6 +147,7 @@
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\GameStatisticsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LabaController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -159,7 +160,9 @@
     <Compile Include="Factories\IBannerModelFactory.cs" />
     <Compile Include="Factories\ICustomerModelFactory.cs" />
     <Compile Include="Factories\IGameStatisticsModelFactory.cs" />
+    <Compile Include="Factories\ILabaModelFactory.cs" />
     <Compile Include="Factories\IUserModelFactory.cs" />
+    <Compile Include="Factories\LabaModelFactory.cs" />
     <Compile Include="Factories\UserModelFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -176,11 +179,14 @@
     <Compile Include="Models\Customer\RegisterModel.cs" />
     <Compile Include="Models\Game\GameDailyStatisticsListModel.cs" />
     <Compile Include="Models\Game\GameDailyStatisticsModel.cs" />
+    <Compile Include="Models\Game\GameLabaRouteListModel.cs" />
+    <Compile Include="Models\Game\GameLabaRouteModel.cs" />
     <Compile Include="Models\User\UserListModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Validators\Content\BannerValidate.cs" />
+    <Compile Include="Validators\Content\BannerValidator.cs" />
     <Compile Include="Validators\Customer\LoginValidator.cs" />
+    <Compile Include="Validators\Laba\LabaRouteValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\adminLTE\AdminLTE-2.3.0.css" />
@@ -1187,6 +1193,9 @@
     <Content Include="Views\Shared\Delete.cshtml" />
     <Content Include="Views\Banner\Create.cshtml" />
     <Content Include="Views\GameStatistics\DailyList.cshtml" />
+    <Content Include="Views\Laba\RouteList.cshtml" />
+    <Content Include="Views\Laba\EditRoute.cshtml" />
+    <Content Include="Views\Laba\_CreateOrUpdateRoute.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

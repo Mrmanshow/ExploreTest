@@ -11,7 +11,7 @@ using Explore.Web.Validators.Content;
 
 namespace Explore.Web.Models.Content
 {
-    [Validator(typeof(BannerValidate))]
+    [Validator(typeof(BannerValidator))]
     public partial class BannerModel : BaseExploreEntityModel
     {
         public BannerModel()

@@ -2,6 +2,7 @@
 using Explore.Core.Caching;
 using Explore.Core.Data;
 using Explore.Core.Domain.Game;
+using Explore.Core.Domain.Game.Laba;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,7 +81,8 @@ namespace Explore.Services.Game
                                 GameCount = g.Count(),
                                 GameWin = g.Sum(a => a.BuyAmount),
                                 GameFail = g.Sum(a => a.Amount),
-                                CreateTime = g.Key.Year + "-" + g.Key.Month + "-" + g.Key.Day
+                                CreateTime = g.Key.Year + "-" + g.Key.Month + "-" + g.Key.Day,
+                                Order = g.Key.Year + g.Key.Month * 100 + g.Key.Day
                             };
 
                 switch (gameType)
@@ -95,7 +97,8 @@ namespace Explore.Services.Game
                                     GameCount = g.Count(),
                                     GameWin = g.Sum(a => a.BetSum),
                                     GameFail = g.Sum(a => a.BetSum + a.WinSum),
-                                    CreateTime = g.Key.Year + "-" + g.Key.Month + "-" + g.Key.Day
+                                    CreateTime = g.Key.Year + "-" + g.Key.Month + "-" + g.Key.Day,
+                                    Order = g.Key.Year + g.Key.Month * 100 + g.Key.Day
                                 };
                         break;
                     case 3:
@@ -110,7 +113,8 @@ namespace Explore.Services.Game
                                     GameCount = g.Select(c => c.s.Id).Distinct().Count(),
                                     GameWin = g.Select(s => new { s.s.Id, s.s.Amount }).Distinct().Sum(a => a.Amount),
                                     GameFail = g.Select(s => new { s.s.Id, s.s.WinAmount }).Distinct().Sum(a => a.WinAmount),
-                                    CreateTime = g.Key.Year + "-" + g.Key.Month + "-" + g.Key.Day
+                                    CreateTime = g.Key.Year + "-" + g.Key.Month + "-" + g.Key.Day,
+                                    Order = g.Key.Year + g.Key.Month * 100 + g.Key.Day
                                 };
                         break;
                     case 4:
@@ -123,14 +127,15 @@ namespace Explore.Services.Game
                                     GameCount = g.Count(),
                                     GameWin = g.Sum(a => a.Amount),
                                     GameFail = g.Sum(a => a.WinAmount),
-                                    CreateTime = g.Key.Year + "-" + g.Key.Month + "-" + g.Key.Day
+                                    CreateTime = g.Key.Year + "-" + g.Key.Month + "-" + g.Key.Day,
+                                    Order = g.Key.Year + g.Key.Month * 100 + g.Key.Day
                                 };
                         break;
                 }
 
 
 
-                query = query.OrderByDescending(q => q.CreateTime);
+                query = query.OrderByDescending(q => q.Order);
 
                 return new PagedList<GameTurnover>(query, pageIndex, pageSize);
 

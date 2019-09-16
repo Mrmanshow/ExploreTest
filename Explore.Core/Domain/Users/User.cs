@@ -24,6 +24,12 @@ namespace Explore.Core.Domain.Users
 
         #region Navigation properties
 
+        public UserRegisterType UserRegisterType
+        {
+            get { return (UserRegisterType)this.LoginType; }
+            set { this.LoginType = (int)value; }
+        }
+
         /// <summary>
         /// 用户账户
         /// </summary>

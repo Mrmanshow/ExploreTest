@@ -1,0 +1,124 @@
+﻿@using Explore.Web.Framework;
+
+@model Explore.Web.Models.Game.GameLabaRouteModel
+
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model => model.Id)
+
+<div class="content">
+    <div class="form-horizontal col-md-7">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.X1)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.X1, required: true)
+                            @Html.ValidationMessageFor(model => model.X1)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.Y1)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.Y1, required: true)
+                            @Html.ValidationMessageFor(model => model.Y1)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.X2)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.X2, required: true)
+                            @Html.ValidationMessageFor(model => model.X2)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.Y2)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.Y2, required: true)
+                            @Html.ValidationMessageFor(model => model.Y2)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.X3)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.X3, required: true)
+                            @Html.ValidationMessageFor(model => model.X3)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.Y3)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.Y3, required: true)
+                            @Html.ValidationMessageFor(model => model.Y3)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.X4)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.X4, required: true)
+                            @Html.ValidationMessageFor(model => model.X4)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.Y4)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.Y4, required: true)
+                            @Html.ValidationMessageFor(model => model.Y4)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.X5)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.X5, required: true)
+                            @Html.ValidationMessageFor(model => model.X5)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.Y5)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.Y5, required: true)
+                            @Html.ValidationMessageFor(model => model.Y5)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.Sequence)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreEditorFor(model => model.Sequence, required: true)
+                            @Html.ValidationMessageFor(model => model.Sequence)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.ExploreLabelFor(model => model.Status)
+                        </div>
+                        <div class="col-md-9">
+                            @Html.ExploreDropDownListFor(model => model.Status, Model.AvaliableLabaRouteStatues)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

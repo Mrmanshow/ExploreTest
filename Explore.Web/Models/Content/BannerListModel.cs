@@ -14,7 +14,7 @@ namespace Explore.Web.Models.Content
         public BannerListModel()
         {
             BannerStatusIds = new List<int>();
-            AvailableOrderStatuses = new List<SelectListItem>();
+            AvailableBannerStatuses = new List<SelectListItem>();
         }
 
         [ExploreResourceDisplayName("Admin.Content.Banner.List.SearchStartDate")]
@@ -33,6 +33,6 @@ namespace Explore.Web.Models.Content
         [AllowHtml]
         public string Theme { set; get; }
 
-        public IList<SelectListItem> AvailableOrderStatuses { set; get; }
+        public IList<SelectListItem> AvailableBannerStatuses { set; get; }
     }
 }

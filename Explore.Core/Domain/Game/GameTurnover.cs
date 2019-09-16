@@ -19,5 +19,7 @@ namespace Explore.Core.Domain.Game
         public decimal GameWin { set; get; }
 
         public decimal GameFail { set; get; }
+
+        public int Order { set; get; }
     }
 }

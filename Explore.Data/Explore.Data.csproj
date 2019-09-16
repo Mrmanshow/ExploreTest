@@ -67,7 +67,9 @@
     <Compile Include="Mapping\Customers\CustomerPasswordMap.cs" />
     <Compile Include="Mapping\Customers\CustomerRoleMap.cs" />
     <Compile Include="Mapping\ExploreEntityTypeConfiguration.cs" />
-    <Compile Include="Mapping\Game\LabaOrderMap.cs" />
+    <Compile Include="Mapping\Game\Laba\LabaOrderMap.cs" />
+    <Compile Include="Mapping\Game\Laba\LabaWinRouteMap.cs" />
+    <Compile Include="Mapping\Game\Laba\LabaWinRouteNewMap.cs" />
     <Compile Include="Mapping\Game\LuckEggOrderDetailMap.cs" />
     <Compile Include="Mapping\Game\LuckEggOrderMap.cs" />
     <Compile Include="Mapping\Game\ScratchCardMap.cs" />
@@ -96,6 +98,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,5 +1,6 @@
 ﻿using Explore.Core.Domain.Content;
 using Explore.Core.Domain.Game;
+using Explore.Core.Domain.Game.Laba;
 using Explore.Core.Domain.Users;
 using Explore.Core.Infrastructure.Mapper;
 using Explore.Services.Cms;
@@ -64,6 +65,26 @@ namespace Explore.Web.Extensions
         #endregion
 
         #region Game
+
+        public static GameLabaRouteModel ToModel(this LabaWinRoute entity)
+        {
+            return entity.MapTo<LabaWinRoute, GameLabaRouteModel>();
+        }
+
+        public static GameLabaRouteModel ToModel(this LabaWinRouteNew entity)
+        {
+            return entity.MapTo<LabaWinRouteNew, GameLabaRouteModel>();
+        }
+
+        public static LabaWinRoute ToEntity(this GameLabaRouteModel model, LabaWinRoute destination)
+        {
+            return model.MapTo(destination);
+        }
+
+        public static LabaWinRouteNew ToEntity(this GameLabaRouteModel model, LabaWinRouteNew destination)
+        {
+            return model.MapTo(destination);
+        }
 
         public static GameDailyStatisticsModel ToModel(this GameTurnover entity)
         {

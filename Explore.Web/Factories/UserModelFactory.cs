@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Explore.Web.Extensions;
+using Explore.Services.Localization;
+using Explore.Core;
 
 namespace Explore.Web.Factories
 {
@@ -13,14 +15,18 @@ namespace Explore.Web.Factories
     {
         #region Fields
 
+        private readonly ILocalizationService _localizationService;
+        private readonly IWorkContext _workContext;
 
         #endregion
 
         #region Ctor
 
-        public UserModelFactory()
+        public UserModelFactory(ILocalizationService localizationService,
+            IWorkContext workContext)
         {
-
+            this._localizationService = localizationService;
+            this._workContext = workContext;
         }
 
         #endregion
@@ -30,24 +36,13 @@ namespace Explore.Web.Factories
         public virtual IList<UserModel> PrepareUserListModel(IList<User> customer)
         {
             var list = new List<UserModel>();
-            foreach (var model in customer)
+            list = customer.Select(x =>
             {
-                var userModel = model.ToModel();
-                switch (model.LoginType)
-                {
-                    case 0:
-                        userModel.LoginType = "手机";
-                        break;
-                    case 1:
-                        userModel.LoginType = "FaceBook";
-                        break;
-                    case 2:
-                        userModel.LoginType = "谷歌";
-                        break;
-                }
-                list.Add(userModel);
-            }
-
+                var userModel = x.ToModel();
+                userModel.LoginType = x.UserRegisterType.GetLocalizedEnum(_localizationService, _workContext);
+                return userModel;
+            }).ToList();
+     
             return list;
         }
 

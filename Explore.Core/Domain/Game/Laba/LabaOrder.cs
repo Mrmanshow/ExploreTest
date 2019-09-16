@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Explore.Core.Domain.Game
+namespace Explore.Core.Domain.Game.Laba
 {
     public partial class LabaOrder: BaseEntity
     {

@@ -46,6 +46,8 @@ namespace Explore.Web.Infrastructure
                 .InstancePerLifetimeScope();
             builder.RegisterType<GameStatisticsModelFactory>().As<IGameStatisticsModelFactory>()
                 .InstancePerLifetimeScope();
+            builder.RegisterType<LabaModelFactory>().As<ILabaModelFactory>()
+                .InstancePerLifetimeScope();
         }
 
         /// <summary>

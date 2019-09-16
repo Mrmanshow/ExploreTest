@@ -9,9 +9,9 @@ using FluentValidation;
 
 namespace Explore.Web.Validators.Content
 {
-    public partial class BannerValidate : BaseExploreValidator<BannerModel>
+    public partial class BannerValidator : BaseExploreValidator<BannerModel>
     {
-        public BannerValidate(ILocalizationService localizationService)
+        public BannerValidator(ILocalizationService localizationService)
         {
             RuleFor(x => x.PictureModel.PictureId).NotEqual(0)
                 .WithMessage(localizationService.GetResource("Admin.Content.Banner.Fields.PictureId.Required"));

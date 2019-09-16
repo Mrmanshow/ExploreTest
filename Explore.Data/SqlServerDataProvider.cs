@@ -72,7 +72,7 @@ namespace Explore.Data
         #region Methods
 
         /// <summary>
-        /// Initialize connection factory
+        /// 初始化连接工厂
         /// </summary>
         public virtual void InitConnectionFactory()
         {
@@ -83,7 +83,7 @@ namespace Explore.Data
         }
 
         /// <summary>
-        /// Initialize database
+        /// 初始化数据库
         /// </summary>
         public virtual void InitDatabase()
         {

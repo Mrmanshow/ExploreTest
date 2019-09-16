@@ -122,6 +122,7 @@ namespace Explore.Web.Framework
             builder.RegisterType<GenericAttributeService>().As<IGenericAttributeService>().InstancePerLifetimeScope();
             builder.RegisterType<BannerService>().As<IBannerService>().InstancePerLifetimeScope();
             builder.RegisterType<GameStatisticsService>().As<IGameStatisticsService>().InstancePerLifetimeScope();
+            builder.RegisterType<GameLabaService>().As<IGameLabaService>().InstancePerLifetimeScope();
             builder.RegisterType<PictureService>().As<IPictureService>().InstancePerLifetimeScope();
             builder.RegisterType<ExportManager>().As<IExportManager>().InstancePerLifetimeScope();
 
