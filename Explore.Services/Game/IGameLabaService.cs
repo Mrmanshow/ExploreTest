@@ -23,5 +23,9 @@ namespace Explore.Services.Game
 
         void UpdateLabaRouteNew(LabaWinRouteNew mode);
 
+        IPagedList<LabaOrder> SearchLabaOrders(DateTime? beginTime = null, DateTime? endTime = null, int pageIndex = 0, int pageSize = int.MaxValue);
+
+        IPagedList<LabaOrderNew> SearchLabaNewOrders(DateTime? beginTime = null, DateTime? endTime = null, int pageIndex = 0, int pageSize = int.MaxValue);
+
     }
 }

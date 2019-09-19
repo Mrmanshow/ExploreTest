@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Explore.Web.Models.Game
 {
-    public partial class GameDailyStatisticsListModel: BaseExploreModel
+    public partial class GameDailyStatisticsListModel : BaseExploreEntityModel
     {
         public GameDailyStatisticsListModel()
         {

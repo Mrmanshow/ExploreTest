@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Explore.Web.Models.Game
 {
-    public partial class GameDailyStatisticsModel: BaseExploreModel
+    public partial class GameDailyStatisticsModel : BaseExploreEntityModel
     {
         public string CreateTime { get; set; }
 

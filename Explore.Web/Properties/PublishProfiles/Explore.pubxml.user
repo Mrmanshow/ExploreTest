@@ -52,7 +52,7 @@
       <publishTime>03/15/2017 18:29:58</publishTime>
     </File>
     <File Include="bin/Explore.Core.dll">
-      <publishTime>09/16/2019 18:58:31</publishTime>
+      <publishTime>09/19/2019 19:10:29</publishTime>
     </File>
     <File Include="bin/Explore.Core.dll.config">
       <publishTime>08/06/2019 19:25:43</publishTime>
@@ -61,7 +61,7 @@
       <publishTime>08/23/2019 17:10:56</publishTime>
     </File>
     <File Include="bin/Explore.Data.dll">
-      <publishTime>09/16/2019 18:58:32</publishTime>
+      <publishTime>09/19/2019 19:10:30</publishTime>
     </File>
     <File Include="bin/Explore.Data.dll.config">
       <publishTime>08/23/2019 17:26:13</publishTime>
@@ -70,7 +70,7 @@
       <publishTime>08/23/2019 17:27:50</publishTime>
     </File>
     <File Include="bin/Explore.Services.dll">
-      <publishTime>09/16/2019 18:58:33</publishTime>
+      <publishTime>09/19/2019 19:10:32</publishTime>
     </File>
     <File Include="bin/Explore.Services.dll.config">
       <publishTime>08/23/2019 17:26:13</publishTime>
@@ -79,10 +79,10 @@
       <publishTime>08/23/2019 17:27:51</publishTime>
     </File>
     <File Include="bin/Explore.Web.dll">
-      <publishTime>09/16/2019 18:58:36</publishTime>
+      <publishTime>09/19/2019 19:10:35</publishTime>
     </File>
     <File Include="bin/Explore.Web.Framework.dll">
-      <publishTime>09/16/2019 18:58:34</publishTime>
+      <publishTime>09/19/2019 19:10:33</publishTime>
     </File>
     <File Include="bin/Explore.Web.Framework.dll.config">
       <publishTime>08/23/2019 17:26:13</publishTime>
@@ -1399,7 +1399,7 @@
       <publishTime>08/13/2019 14:33:52</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>08/22/2019 14:16:07</publishTime>
+      <publishTime>09/19/2019 18:37:05</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>08/23/2019 17:36:14</publishTime>
@@ -2953,7 +2953,7 @@
       <publishTime>08/13/2019 14:43:09</publishTime>
     </File>
     <File Include="sitemap.config">
-      <publishTime>09/16/2019 18:57:35</publishTime>
+      <publishTime>09/19/2019 18:38:23</publishTime>
     </File>
     <File Include="Views/Banner/Create.cshtml">
       <publishTime>09/06/2019 17:06:59</publishTime>
@@ -2981,6 +2981,9 @@
     </File>
     <File Include="Views/Laba/EditRoute.cshtml">
       <publishTime>09/11/2019 17:50:52</publishTime>
+    </File>
+    <File Include="Views/Laba/OrderList.cshtml">
+      <publishTime>09/19/2019 18:58:09</publishTime>
     </File>
     <File Include="Views/Laba/RouteList.cshtml">
       <publishTime>09/16/2019 18:55:02</publishTime>

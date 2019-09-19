@@ -24,6 +24,8 @@ namespace Explore.Services.Game
         private readonly ICacheManager _cacheManager;
         private readonly IRepository<LabaWinRoute> _labaWinRouteRepository;
         private readonly IRepository<LabaWinRouteNew> _labaWinRouteNewRepository;
+        private readonly IRepository<LabaOrder> _labaOrderRepository;
+        private readonly IRepository<LabaOrderNew> _labaOrderNewRepository;
 
         #endregion
 
@@ -31,11 +33,15 @@ namespace Explore.Services.Game
 
         public GameLabaService(IRepository<LabaWinRoute> labaWinRouteRepository,
             IRepository<LabaWinRouteNew> labaWinRouteNewRepository,
+            IRepository<LabaOrder> labaOrderRepository,
+            IRepository<LabaOrderNew> labaOrderNewRepository,
             ICacheManager cacheManager)
         {
             this._cacheManager = cacheManager;
             this._labaWinRouteRepository = labaWinRouteRepository;
             this._labaWinRouteNewRepository = labaWinRouteNewRepository;
+            this._labaOrderNewRepository = labaOrderNewRepository;
+            this._labaOrderRepository = labaOrderRepository;
         }
 
         #endregion
@@ -108,6 +114,41 @@ namespace Explore.Services.Game
                 throw new ArgumentNullException("route");
 
                 _labaWinRouteNewRepository.Update(model);
+        }
+
+
+        public IPagedList<LabaOrder> SearchLabaOrders(DateTime? beginTime = null, DateTime? endTime = null, int pageIndex = 0, int pageSize = int.MaxValue)
+        {
+            var query = from t in _labaOrderRepository.Table
+                        select t;
+            
+            if (beginTime.HasValue)
+                query = query.Where(c => c.CreateTime > beginTime);
+
+            if (endTime.HasValue)
+                query = query.Where(c => c.CreateTime < endTime);
+
+            query = query.OrderByDescending(c => c.CreateTime);
+
+            return new PagedList<LabaOrder>(query, pageIndex, pageSize);
+
+        }
+
+        public IPagedList<LabaOrderNew> SearchLabaNewOrders(DateTime? beginTime = null, DateTime? endTime = null, int pageIndex = 0, int pageSize = int.MaxValue)
+        {
+            var query = from t in _labaOrderNewRepository.Table
+                        select t;
+
+            if (beginTime.HasValue)
+                query = query.Where(c => c.CreateTime > beginTime);
+
+            if (endTime.HasValue)
+                query = query.Where(c => c.CreateTime < endTime);
+
+            query = query.OrderByDescending(c => c.CreateTime);
+
+            return new PagedList<LabaOrderNew>(query, pageIndex, pageSize);
+
         }
     }
 }

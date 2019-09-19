@@ -35,6 +35,7 @@ namespace Explore.Services.Game
         private readonly IRepository<ScratchCard> _scratchCardRepository;
         private readonly IRepository<Sea> _seaRepository;
         private readonly IRepository<LabaOrder> _labaOrderRepository;
+        private readonly IRepository<LabaOrderNew> _labaNewOrderRepository;
         private readonly IRepository<LuckEggOrder> _luckEggOrderRepository;
         private readonly IRepository<LuckEggOrderDetail> _luckEggOrderDetailRepository;
 
@@ -46,6 +47,7 @@ namespace Explore.Services.Game
             IRepository<ScratchCard> scratchCardRepository, 
             IRepository<Sea> seaRepository,
             IRepository<LabaOrder> labaOrderRepository,
+            IRepository<LabaOrderNew> labaNewOrderRepository,
             IRepository<LuckEggOrder> luckEggOrderRepository,
             IRepository<LuckEggOrderDetail> luckEggOrderDetailRepository)
         {
@@ -53,6 +55,7 @@ namespace Explore.Services.Game
             this._scratchCardRepository = scratchCardRepository;
             this._seaRepository = seaRepository;
             this._labaOrderRepository = labaOrderRepository;
+            this._labaNewOrderRepository = labaNewOrderRepository;
             this._luckEggOrderRepository = luckEggOrderRepository;
             this._luckEggOrderDetailRepository = luckEggOrderDetailRepository;
         }
@@ -119,6 +122,20 @@ namespace Explore.Services.Game
                         break;
                     case 4:
                         query = from s in _labaOrderRepository.Table
+                                where beginDate < s.CreateTime && s.CreateTime < endDate && s.Status == 1
+                                group s by new { s.CreateTime.Year, s.CreateTime.Month, s.CreateTime.Day } into g
+                                select new GameTurnover
+                                {
+                                    GameUser = g.Select(c => c.UserId).Distinct().Count(),
+                                    GameCount = g.Count(),
+                                    GameWin = g.Sum(a => a.Amount),
+                                    GameFail = g.Sum(a => a.WinAmount),
+                                    CreateTime = g.Key.Year + "-" + g.Key.Month + "-" + g.Key.Day,
+                                    Order = g.Key.Year + g.Key.Month * 100 + g.Key.Day
+                                };
+                        break;
+                    case 5:
+                        query = from s in _labaNewOrderRepository.Table
                                 where beginDate < s.CreateTime && s.CreateTime < endDate && s.Status == 1
                                 group s by new { s.CreateTime.Year, s.CreateTime.Month, s.CreateTime.Day } into g
                                 select new GameTurnover

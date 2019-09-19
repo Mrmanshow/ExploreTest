@@ -179,6 +179,8 @@
     <Compile Include="Models\Customer\RegisterModel.cs" />
     <Compile Include="Models\Game\GameDailyStatisticsListModel.cs" />
     <Compile Include="Models\Game\GameDailyStatisticsModel.cs" />
+    <Compile Include="Models\Game\GameLabaOrderListModel.cs" />
+    <Compile Include="Models\Game\GameLabaOrderModel.cs" />
     <Compile Include="Models\Game\GameLabaRouteListModel.cs" />
     <Compile Include="Models\Game\GameLabaRouteModel.cs" />
     <Compile Include="Models\User\UserListModel.cs" />
@@ -1077,7 +1079,9 @@
     <Content Include="Views\Shared\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="sitemap.config" />
+    <Content Include="sitemap.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Register.cshtml" />
@@ -1196,6 +1200,7 @@
     <Content Include="Views\Laba\RouteList.cshtml" />
     <Content Include="Views\Laba\EditRoute.cshtml" />
     <Content Include="Views\Laba\_CreateOrUpdateRoute.cshtml" />
+    <Content Include="Views\Laba\OrderList.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

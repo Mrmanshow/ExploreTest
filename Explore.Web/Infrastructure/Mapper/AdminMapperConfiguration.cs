@@ -81,6 +81,8 @@ namespace Explore.Web.Infrastructure.Mapper
                     .ForMember(dest => dest.GameFail, mo => mo.MapFrom(src => src.GameFail))
                     .ForMember(dest => dest.CreateTime, mo => mo.MapFrom(src => src.CreateTime));
 
+                #region LabaRoute
+
                 cfg.CreateMap<LabaWinRoute, GameLabaRouteModel>()
                     .ForMember(dest => dest.Id, mo => mo.MapFrom(src => src.Id))
                     .ForMember(dest => dest.X1, mo => mo.MapFrom(src => src.X1))
@@ -135,6 +137,30 @@ namespace Explore.Web.Infrastructure.Mapper
                     .ForMember(dest => dest.Y5, mo => mo.MapFrom(src => src.Y5))
                     .ForMember(dest => dest.Status, mo => mo.MapFrom(src => Int32.Parse(src.Status)))
                     .ForMember(dest => dest.CreateTime, mo => mo.Ignore());
+
+                #endregion
+
+                #region LabaOrder
+
+                cfg.CreateMap<LabaOrder, GameLabaOrderModel>()
+                    .ForMember(dest => dest.Id, mo => mo.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.UserName, mo => mo.MapFrom(src => src.User.NickName == "" ? src.User.UserName : src.User.NickName))
+                    .ForMember(dest => dest.WinAmount, mo => mo.MapFrom(src => src.WinAmount))
+                    .ForMember(dest => dest.Amount, mo => mo.MapFrom(src => src.Amount))
+                    .ForMember(dest => dest.CreateTime, mo => mo.MapFrom(src => src.CreateTime))
+                    .ForMember(dest => dest.Position, mo => mo.MapFrom(src => src.Position));
+
+                cfg.CreateMap<LabaOrderNew, GameLabaOrderModel>()
+                    .ForMember(dest => dest.Id, mo => mo.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.UserName, mo => mo.MapFrom(src => src.User.NickName == "" ? src.User.UserName : src.User.NickName))
+                    .ForMember(dest => dest.WinAmount, mo => mo.MapFrom(src => src.WinAmount))
+                    .ForMember(dest => dest.Amount, mo => mo.MapFrom(src => src.Amount))
+                    .ForMember(dest => dest.CreateTime, mo => mo.MapFrom(src => src.CreateTime))
+                    .ForMember(dest => dest.FreeCount, mo => mo.MapFrom(src => src.FreeCount))
+                    .ForMember(dest => dest.FreeOrderId, mo => mo.MapFrom(src => src.FreeOrderId))
+                    .ForMember(dest => dest.Position, mo => mo.MapFrom(src => src.Position));
+
+                #endregion
 
             };
             return action;

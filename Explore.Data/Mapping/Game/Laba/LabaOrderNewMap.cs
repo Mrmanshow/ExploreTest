@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Explore.Data.Mapping.Game.Laba
 {
-    public partial class LabaOrderMap: ExploreEntityTypeConfiguration<LabaOrder>
+    public partial class LabaOrderNewMap: ExploreEntityTypeConfiguration<LabaOrderNew>
     {
-        public LabaOrderMap()
+        public LabaOrderNewMap()
         {
-            this.ToTable("LabaOrder");
+            this.ToTable("LabaOrderNew");
             this.HasKey(x => x.Id);
 
             this.HasRequired(c => c.User).
-                WithMany().
-                HasForeignKey(c => c.UserId);
+                 WithMany().
+                 HasForeignKey(c => c.UserId);
         }
     }
 }

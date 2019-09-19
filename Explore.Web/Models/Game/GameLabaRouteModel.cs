@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Explore.Web.Models.Game
 {
-    //[Validator(typeof(LabaRouteValidator))]
+    [Validator(typeof(LabaRouteValidator))]
     public partial class GameLabaRouteModel : BaseExploreEntityModel
     {
         [ExploreResourceDisplayName("Admin.LabaRoute.Fields.X1")]

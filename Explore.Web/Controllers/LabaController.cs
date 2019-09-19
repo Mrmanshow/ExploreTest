@@ -44,6 +44,59 @@ namespace Explore.Web.Controllers
 
         #endregion
 
+        #region Order
+
+        public virtual ActionResult OrderList(int labaType = 0)
+        {
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageGameLabaOrder))
+                return AccessDeniedView();
+
+            var model = new GameLabaOrderListModel();
+            model.AvasliableLabaTypes = LabaType.Laba.ToSelectList(true).ToList();
+            model.LabaTypeId = labaType;
+
+            model.EndDate = DateTime.Now;
+            model.BeginDate = DateTime.Now.AddDays(-7);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public virtual ActionResult OrderList(DataSourceRequest recommand, GameLabaOrderListModel model)
+        {
+            if (!_permissionService.Authorize(StandardPermissionProvider.ManageGameLabaOrder))
+                return AccessDeniedView();
+
+            if (model.EndDate.HasValue)
+                model.EndDate = model.EndDate.Value.AddDays(1);
+
+            switch (model.LabaTypeId)
+            {
+                case 0:
+                    var list = _gameLabaServivce.SearchLabaOrders(model.BeginDate, model.EndDate, recommand.Page - 1, recommand.PageSize);
+                    var gridModel = new DataSourceResult
+                    {
+                        Data = _labaModelFactor.PrepareGameLabaOrderListModel(list),
+                        Total = list.TotalCount
+                    };
+                    return Json(gridModel);
+                default:
+                    var listNew = _gameLabaServivce.SearchLabaNewOrders(model.BeginDate, model.EndDate, recommand.Page - 1, recommand.PageSize);
+                    var gridModelNew = new DataSourceResult
+                    {
+                        Data = _labaModelFactor.PrepareGameLabaOrderNewListModel(listNew),
+                        Total = listNew.TotalCount
+                    };
+
+                    return Json(gridModelNew);
+            }
+        }
+
+        #endregion
+
+        #region Route
+
+
         public virtual ActionResult RouteList(int labaType = 0)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageGameLabaRoute))
@@ -98,7 +151,7 @@ namespace Explore.Web.Controllers
             switch (labaType)
             {
                 case 0:
-                    
+
                     var route = _gameLabaServivce.GetLabaWinRouteById(id);
 
                     if (route == null)
@@ -110,7 +163,7 @@ namespace Explore.Web.Controllers
 
                     return View(model);
                 default:
-                    
+
                     var routeNew = _gameLabaServivce.GetLabaWinRouteNewById(id);
 
                     if (routeNew == null)
@@ -134,7 +187,7 @@ namespace Explore.Web.Controllers
 
             if (ModelState.IsValid)
             {
-   
+
                 switch (labaType)
                 {
                     case 0:
@@ -143,9 +196,9 @@ namespace Explore.Web.Controllers
                         _gameLabaServivce.UpdateLabaRoute(route);
                         break;
                     default:
-                         var routeNew = _gameLabaServivce.GetLabaWinRouteNewById(id);
-                         routeNew = model.ToEntity(routeNew);
-                         _gameLabaServivce.UpdateLabaRouteNew(routeNew);
+                        var routeNew = _gameLabaServivce.GetLabaWinRouteNewById(id);
+                        routeNew = model.ToEntity(routeNew);
+                        _gameLabaServivce.UpdateLabaRouteNew(routeNew);
                         break;
                 }
 
@@ -158,5 +211,7 @@ namespace Explore.Web.Controllers
 
             return View(model);
         }
+
+        #endregion
     }
 }

@@ -17,5 +17,9 @@ namespace Explore.Web.Factories
 
         GameLabaRouteModel PrepareGameLabaRouteModel(LabaWinRouteNew labaWinRoute);
 
+        IList<GameLabaOrderModel> PrepareGameLabaOrderListModel(IList<LabaOrder> labaOrders);
+
+        IList<GameLabaOrderModel> PrepareGameLabaOrderNewListModel(IList<LabaOrderNew> labaOrdersNew);
+
     }
 }

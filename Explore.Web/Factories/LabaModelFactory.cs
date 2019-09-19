@@ -31,9 +31,14 @@ namespace Explore.Web.Factories
 
         #endregion
 
+
+
+        #region Route
+
         public virtual IList<GameLabaRouteModel> PrepareGameLabaRouteListModel(IList<LabaWinRoute> labaWinRoutes)
         {
-            var list = labaWinRoutes.Select(x=>{
+            var list = labaWinRoutes.Select(x =>
+            {
                 var model = x.ToModel();
 
                 model.Status = x.LabaRouteStatus.GetLocalizedEnum(_localizationService, _workContext);
@@ -76,5 +81,34 @@ namespace Explore.Web.Factories
 
             return model;
         }
+
+        #endregion
+
+        #region Order
+        
+        public virtual IList<GameLabaOrderModel> PrepareGameLabaOrderListModel(IList<LabaOrder> labaOrders)
+        {
+            var list = labaOrders.Select(x =>
+            {
+                var model = x.ToModel();
+
+                return model;
+            });
+
+            return list.ToList();
+        }
+
+        public virtual IList<GameLabaOrderModel> PrepareGameLabaOrderNewListModel(IList<LabaOrderNew> labaOrdersNew)
+        {
+            var list = labaOrdersNew.Select(x =>
+            {
+                var model = x.ToModel();
+
+                return model;
+            });
+
+            return list.ToList();
+        }
+        #endregion
     }
 }

@@ -68,6 +68,7 @@
     <Compile Include="Mapping\Customers\CustomerRoleMap.cs" />
     <Compile Include="Mapping\ExploreEntityTypeConfiguration.cs" />
     <Compile Include="Mapping\Game\Laba\LabaOrderMap.cs" />
+    <Compile Include="Mapping\Game\Laba\LabaOrderNewMap.cs" />
     <Compile Include="Mapping\Game\Laba\LabaWinRouteMap.cs" />
     <Compile Include="Mapping\Game\Laba\LabaWinRouteNewMap.cs" />
     <Compile Include="Mapping\Game\LuckEggOrderDetailMap.cs" />

@@ -66,6 +66,8 @@ namespace Explore.Web.Extensions
 
         #region Game
 
+        #region LabaRoute
+
         public static GameLabaRouteModel ToModel(this LabaWinRoute entity)
         {
             return entity.MapTo<LabaWinRoute, GameLabaRouteModel>();
@@ -85,6 +87,21 @@ namespace Explore.Web.Extensions
         {
             return model.MapTo(destination);
         }
+
+        #endregion
+
+        #region LabaOrder
+
+        public static GameLabaOrderModel ToModel(this LabaOrder entity)
+        {
+            return entity.MapTo<LabaOrder, GameLabaOrderModel>();
+        }
+        public static GameLabaOrderModel ToModel(this LabaOrderNew entity)
+        {
+            return entity.MapTo<LabaOrderNew, GameLabaOrderModel>();
+        }
+
+        #endregion
 
         public static GameDailyStatisticsModel ToModel(this GameTurnover entity)
         {

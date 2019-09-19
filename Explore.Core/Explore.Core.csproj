@@ -155,6 +155,7 @@
     <Compile Include="Domain\Game\GameTurnover.cs" />
     <Compile Include="Domain\Game\GameType.cs" />
     <Compile Include="Domain\Game\Laba\LabaOrder.cs" />
+    <Compile Include="Domain\Game\Laba\LabaOrderNew.cs" />
     <Compile Include="Domain\Game\Laba\LabaWinRoute.cs" />
     <Compile Include="Domain\Game\Laba\LabaRouteStatus.cs" />
     <Compile Include="Domain\Game\Laba\LabaType.cs" />

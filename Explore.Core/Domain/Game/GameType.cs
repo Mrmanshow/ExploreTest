@@ -23,6 +23,10 @@ namespace Explore.Core.Domain.Game
         /// <summary>
         /// 拉霸
         /// </summary>
-        Laba = 4
+        Laba = 4,
+        /// <summary>
+        /// 夺宝奇兵拉霸
+        /// </summary>
+        LabaNew = 5
     }
 }
